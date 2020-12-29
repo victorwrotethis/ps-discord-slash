@@ -49,7 +49,16 @@ def search_bases(bases, search_query, word_list) -> {}:
 
 
 def filter_bases(word_list, result_dict: {}):
-    """""Grades the amount matching words per base and filters out any that fall below the highest graded result"""
+    result_grades = grade_items(word_list, result_dict)
+    best_result = highest_grade(result_grades)
+    best_size = result_grades[best_result]
+    for base, gradation in result_grades.items():
+        if gradation < best_size:
+            result_dict.pop(base)
+
+
+def grade_items(word_list, result_dict: {}):
+    """Grades the amount matching words per base and filters out any that fall below the highest graded result"""
     result_grades = {}
     for base_result in list(result_dict.keys()):
         for word in word_list:
@@ -58,10 +67,8 @@ def filter_bases(word_list, result_dict: {}):
                     result_grades[base_result] += 1
                 else:
                     result_grades[base_result] = 1
-    # Perhaps split here into a new func?
-    best_result = max(result_grades.items(), key=operator.itemgetter(1))[0]
-    best_size = result_grades[best_result]
-    for base, gradation in result_grades.items():
-        if gradation < best_size:
-            result_dict.pop(base)
+    return result_grades
 
+
+def highest_grade(result_grades):
+    return max(result_grades.items(), key=operator.itemgetter(1))[0]
