@@ -13,3 +13,7 @@ class RoleCheckerTest(unittest.TestCase):
         test_roles = ['123456']
         result = check_if_allowed_role(test_roles)
         self.assertFalse(result)
+
+
+if __name__ == '__main__':
+    unittest.main()

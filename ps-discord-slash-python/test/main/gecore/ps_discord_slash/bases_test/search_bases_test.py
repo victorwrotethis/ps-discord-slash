@@ -38,3 +38,7 @@ class SearchBasesTest(unittest.TestCase):
         bases = {'Hvar Tech Plant': 7500, 'Mao Tech Plant': 4401, 'Allatum Bio Lab': 4001, 'Saurva Bio Lab': 3801}
         result = find_bases(bases, search_arg)
         print(result)
+
+
+if __name__ == '__main__':
+    unittest.main()

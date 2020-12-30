@@ -16,3 +16,7 @@ class BaseResponseTest(unittest.TestCase):
         response = generic_response(command_result.type, command_result.data)
         print(response)
 
+
+if __name__ == '__main__':
+    unittest.main()
+
