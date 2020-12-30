@@ -8,13 +8,13 @@
 Provide an endpoint to run [Discord Slash Commands](https://discord.com/developers/docs/interactions/slash-commands), provided the discord application already had been given access to a certain server. This repo, nor the readme will (at the time of writing) not go through the process of creating and deploying the commands. This might be incorporated in a future release. It is *highly* recommended you read through that extensive interactions page to figure out what is going on.
 
 ### Requirements:
-[Python 3.8](https://www.python.org/downloads/) or higher
-[NodeJS](https://nodejs.org/en/) >= v13. v14 LTS or higher recommended
-AWS Account, check [Deployment](###Deployment) 
-[AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
-[AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-windows.html)
-[Docker](https://www.docker.com/products/docker-desktop) (requires  Docker account)
-[A Discord Application](https://discord.com/developers/applications/)
+* [Python 3.8](https://www.python.org/downloads/) or higher
+* [NodeJS](https://nodejs.org/en/) >= v13. v14 LTS or higher recommended
+* AWS Account, check [Deployment](###Deployment) 
+* [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-windows.html)
+* [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-windows.html)
+* [Docker](https://www.docker.com/products/docker-desktop) (requires  Docker account)
+* [A Discord Application](https://discord.com/developers/applications/)
 
 ### Recommended
 [PyCharm](https://www.jetbrains.com/pycharm/download/#section=windows)
@@ -31,10 +31,10 @@ There are two ways you can call CDK commands. Globally or through NPX commands d
 
 In the directory containing the CDK package.json script run the following commands:
 
-`npm install` to install all npm packages.
-`npx cdk bootstrap` if you are using CDK for the first time.
-`cdk synth`  to check if any errors are at place.
-`cdk deploy` to start the stack
+* `npm install` to install all npm packages.
+* `npx cdk bootstrap` if you are using CDK for the first time.
+* `cdk synth`  to check if any errors are at place.
+* `cdk deploy` to start the stack
 
 This will build the lambda function in a container, deploy it to S3 and start up an API Gateway with with a lambda integration at `/DiscordIntents`. The easiest way to figure out the rest of the URL is to go to API Gateway details in the AWS Web Console and find the Invoke URL. `https://<API_ID>.execute-api.<REGION>.amazonaws.com`
 This URL with `/DiscordIntents` will have to be provided at the General Information page at your discord application at `Interactions Endpoint URL`. Discord will immediately try and perform a post request to validate the URL accepts valid or invalid signatures. They will not allow you to save the endpoint until it validates your own validation!
