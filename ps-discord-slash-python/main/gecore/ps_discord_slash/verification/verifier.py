@@ -1,7 +1,8 @@
 from nacl.signing import VerifyKey
 from nacl.exceptions import BadSignatureError
+import os
 
-public_key = 'f99d67bdd1c633fd8b42ebfeb3da667b16c29710d570938d87a2c8eb91bd6c47'
+public_key = os.getenv('discordPublicApiKey')
 
 
 def verify_key(headers, raw_body: str) -> bool:
