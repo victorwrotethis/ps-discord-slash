@@ -17,8 +17,9 @@ Provide an endpoint to run [Discord Slash Commands](https://discord.com/develope
 * [A Discord Application](https://discord.com/developers/applications/)
 
 ### Recommended
-[PyCharm](https://www.jetbrains.com/pycharm/download/#section=windows)
-[AWS Toolkit for Pycharm](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/setup-toolkit.html)
+* [PyCharm](https://www.jetbrains.com/pycharm/download/#section=windows)
+* [AWS Toolkit for Pycharm](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/setup-toolkit.html)
+
 I can highly recommend PyCharm as it will make development very easy combined with the AWS Toolkit. Whereas you can use console commands to deploy functions using SAM CLI as well, it is a simple few clicks using the toolkit.
 
 ### Configuration
@@ -34,7 +35,7 @@ In the directory containing the CDK package.json script run the following comman
 * `npm install` to install all npm packages.
 * `npx cdk bootstrap` if you are using CDK for the first time.
 * `cdk synth`  to check if any errors are at place.
-* `cdk deploy` to start the stack
+* `cdk deploy` to start the stack.
 
 This will build the lambda function in a container, deploy it to S3 and start up an API Gateway with with a lambda integration at `/DiscordIntents`. The easiest way to figure out the rest of the URL is to go to API Gateway details in the AWS Web Console and find the Invoke URL. `https://<API_ID>.execute-api.<REGION>.amazonaws.com`
 This URL with `/DiscordIntents` will have to be provided at the General Information page at your discord application at `Interactions Endpoint URL`. Discord will immediately try and perform a post request to validate the URL accepts valid or invalid signatures. They will not allow you to save the endpoint until it validates your own validation!
