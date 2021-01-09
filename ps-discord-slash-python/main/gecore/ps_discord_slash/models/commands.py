@@ -28,6 +28,19 @@ class ApplicationCommandOption:
         self.options = kwargs.get('options', [ApplicationCommandOption])
 
 
+class ApplicationCommandSubmission:
+    """ Creates a new Discord ApplicationCommandSubmission to be sent to the api. Which can have nested options."""
+    def __init__(self, name: str, description: str, options: [ApplicationCommandOption]):
+        self.name = name
+        self.description = description
+        self.options = options
 
 
-
+class ApplicationCommand:
+    """ Resulting application command response from Discord API upon creating command"""
+    def __init__(self, command_id: str, app_id: str,  name: str, description: str, options: [ApplicationCommandOption]):
+        self.id = command_id
+        self.application_id = app_id
+        self.name = name
+        self.description = description
+        self.options = options

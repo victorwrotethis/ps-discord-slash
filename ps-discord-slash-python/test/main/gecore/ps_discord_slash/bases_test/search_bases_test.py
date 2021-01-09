@@ -37,7 +37,7 @@ class SearchBasesTest(unittest.TestCase):
         search_arg = 'hammer'
         bases = {'Hvar Tech Plant': 7500, 'Mao Tech Plant': 4401, 'Allatum Bio Lab': 4001, 'Saurva Bio Lab': 3801}
         result = find_bases(bases, search_arg)
-        print(result)
+        self.assertEqual({'No Base Found for hammer': -1}, result)
 
 
 if __name__ == '__main__':
