@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  db:
+    image: amazon/dynamodb-local:latest
+    ports:
+      - published: 8000
+        target: 8000
+        protocol: tcp
+        mode: host

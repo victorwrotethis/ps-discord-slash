@@ -1,0 +1,53 @@
+{
+    "name": "Request6v6Base",
+    "description": "Request bases commonly used for scrims",
+    "options": [
+        {
+            "name": "Continent",
+            "description": "Pick a Continent",
+            "type": 1,
+            "options": [
+				{
+					"name": "Hossin",
+					"description": "Pick a base on Hossin",
+					"type": 3,
+					"required": "False",
+					"choices": [
+						{
+							"name": "ChacFusion Lab",
+							"value": "chac_fusion"
+						},
+						{
+							"name": "Ghanan Southern",
+							"value": "ghanan_southern"
+						},
+						{
+							"name": "Acan Southern",
+							"value": "acan_southern"
+						}
+					]
+				},
+				{
+					"name": "Indar",
+					"description": "Pick a base on Indar",
+					"type": 3,
+					"required": "False",
+					"choices": [
+						{
+							"name": "Peris Eastern",
+							"value": "peris_eastern"
+						},
+						{
+							"name": "Xenotech Labs",
+							"value": "xenotech_labs"
+						},
+						{
+							"name": "Rashnu Watchtower",
+							"value": "rashnu_watchtower"
+						}
+					]
+				}
+			]
+        }
+    ]
+}

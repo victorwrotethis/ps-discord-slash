@@ -1,7 +1,6 @@
-from collections import namedtuple
 import operator
 
-from gecore.ps_discord_slash.models.base_query_result import BaseQueryResult
+from gecore.ps_discord_slash.bases.models.base_query_result import BaseQueryResult
 
 split_arg = ','
 query_limit_single = 10

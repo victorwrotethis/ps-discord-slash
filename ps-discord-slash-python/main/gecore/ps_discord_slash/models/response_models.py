@@ -1,9 +1,12 @@
 import json
 import jsonpickle
+
+from gecore.ps_discord_slash.bases.models.error_message import ErrorMessage
 from gecore.ps_discord_slash.models.interactions import InteractionResponseType
 
 
-def error_response():
+def error_response(error_message: ErrorMessage):
+    print(error_message)
     return {
         "statusCode": 401,
         "body": json.dumps({

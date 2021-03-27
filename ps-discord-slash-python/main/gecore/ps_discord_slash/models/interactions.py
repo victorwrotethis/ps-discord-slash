@@ -1,8 +1,9 @@
+from typing import List
 
-# https://discord.com/developers/docs/interactions/slash-commands#interaction-interactiontype
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 
 
+# https://discord.com/developers/docs/interactions/slash-commands#interaction-interactiontype
 class InteractionType:
     PING = 1
     APPLICATION_COMMAND = 2
@@ -11,10 +12,10 @@ class InteractionType:
 # https://discord.com/developers/docs/interactions/slash-commands#interaction-interactionresponsetype
 class InteractionResponseType:
     PONG = 1
-    ACKNOWLEDGE = 2
-    CHANNEL_MESSAGE = 3
+    ACKNOWLEDGE = 2  # Deprecated
+    CHANNEL_MESSAGE = 3  # Deprecated
     CHANNEL_MESSAGE_WITH_SOURCE = 4
-    ACKNOWLEDGE_WITH_SOURCE = 5
+    DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE = 5
 
 
 # https://discord.com/developers/docs/interactions/slash-commands#interaction-applicationcommandinteractiondataoption
@@ -30,9 +31,10 @@ class ApplicationCommandInteractionData:
     def __init__(self, a_id, name: str, **kwargs):
         self.id = a_id,
         self.name = name
-        self.options = kwargs.get('options', [ApplicationCommandInteractionDataOption])
+        self.options = kwargs.get('options', List[ApplicationCommandInteractionDataOption])
 
 
+# https://discord.com/developers/docs/interactions/slash-commands#interaction
 class Interaction:
     def __init__(self, i_id, i_type: InteractionType, guild_id, channel_id, member, token: str, version: int):
         self.id = i_id
@@ -54,6 +56,7 @@ class InteractionResponseData:
         self.allowed_mentions = []
 
 
+# https://discord.com/developers/docs/interactions/slash-commands#interaction-response
 class InteractionResponse:
     def __init__(self, response_type: InteractionResponseType, response_data: InteractionResponseData):
         self.type = response_type

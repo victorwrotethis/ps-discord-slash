@@ -9,9 +9,9 @@ from gecore.ps_discord_slash.verification import verifier
 def lambda_handler(event, context):
     headers = event['headers']
     raw_body = event['body']
-    verified = verifier.verify_key(headers, raw_body)
-    if not verified:
-        return error_response()
+    verification_result = verifier.verify_key(headers, raw_body)
+    if not verification_result.verified:
+        return error_response(verification_result.error)
     json_body = json.loads(raw_body)
     interaction_type = json_body['type']
     if interaction_type == InteractionType.PING:

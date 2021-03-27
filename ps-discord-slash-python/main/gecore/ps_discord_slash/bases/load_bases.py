@@ -2,6 +2,8 @@ import json
 import urllib.request
 import os
 
+#todo load bases through
+
 
 def load_facilities_file():
     with open(determine_source()) as map_file:
@@ -20,4 +22,4 @@ def determine_source():
     if lambda_task_root is not None:
         return lambda_task_root + '/resources/map_region.json'
     else:
-        return '../../../resources/map_region.json'
+        return '../../../../resources/map_region.json'
