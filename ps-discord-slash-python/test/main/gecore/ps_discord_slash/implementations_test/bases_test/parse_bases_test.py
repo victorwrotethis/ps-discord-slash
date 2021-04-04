@@ -1,7 +1,6 @@
 import unittest
-import json
 
-from gecore.ps_discord_slash.bases.parse_bases import load_bases
+from gecore.ps_discord_slash.implementations.bases.parse_bases import load_bases
 
 
 class ParseBasesTest(unittest.TestCase):

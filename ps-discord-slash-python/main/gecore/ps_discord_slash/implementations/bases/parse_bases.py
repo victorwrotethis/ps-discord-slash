@@ -1,5 +1,5 @@
-from gecore.ps_discord_slash.bases.extra_bases import additional_bases
-from gecore.ps_discord_slash.bases.load_bases import load_facilities_file
+from gecore.ps_discord_slash.implementations.bases.extra_bases import additional_bases
+from gecore.ps_discord_slash.implementations.bases.load_bases import load_facilities_file
 
 facility_json = load_facilities_file()
 

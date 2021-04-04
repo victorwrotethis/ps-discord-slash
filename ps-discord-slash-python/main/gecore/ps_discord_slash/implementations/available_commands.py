@@ -1,5 +1,6 @@
 from enum import Enum
 
+from gecore.ps_discord_slash.commands.command_interface import SlashCommandName
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, \
     ApplicationCommandOption, ApplicationCommandOptionType, ApplicationCommandSubmission
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
@@ -30,9 +31,15 @@ def create_command_submission(command: ApplicationCommand):
     )
 
 
-class OvOSlashCommand(Enum):
+class OvOSlashCommand(SlashCommandName):
     SEARCH_BASE_ID = 'searchbaseid'
     REQUEST_ACCOUNTS = 'requestaccounts'
+    REQUEST_ACCOUNT = 'requestaccount'
+    RESERVATION = 'reservation'
+
+    @staticmethod
+    def provide_members():
+        return OvOSlashCommand.__members__.values()
 
     def __getstate__(self):
         """Allows JsonPickle just to retrieve the value"""

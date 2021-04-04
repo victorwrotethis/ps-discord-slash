@@ -5,8 +5,10 @@ from gecore.ps_discord_slash.models.commands import ApplicationCommand
 
 class GuildPermissions:
     """"Governs guild permissions"""
-    def __init__(self, guild: int, request_channels: [int], response_channel: int, allowed_roles: [int]):
+    def __init__(self, guild: int, default_channel: int, request_channels: [int],
+                 response_channel: int, allowed_roles: [int]):
         self.guild = guild
+        self.default_channel = default_channel
         self.request_channels = request_channels
         self.response_channel = response_channel
         self.allowed_roles = allowed_roles

@@ -3,7 +3,7 @@ from nacl.exceptions import BadSignatureError
 import os
 from collections import namedtuple
 
-from gecore.ps_discord_slash.bases.models.error_message import ErrorMessage
+from gecore.ps_discord_slash.implementations.bases.models.error_message import ErrorMessage
 
 public_key = os.getenv('discord_public_api_key')
 

@@ -1,21 +1,23 @@
 import operator
 
-from gecore.ps_discord_slash.bases.models.base_query_result import BaseQueryResult
+from gecore.ps_discord_slash.implementations.bases.models.base_query_result import BaseQueryResult
+from gecore.ps_discord_slash.implementations.bases.parse_bases import load_bases
 
 split_arg = ','
 query_limit_single = 10
 query_limit_multi = 5
+base_list = load_bases()
 
 
-def find_bases(bases, search_arg):
+def find_bases(search_arg):
     query_result = BaseQueryResult()
     # Check for split arguments
     if split_arg in search_arg:
         multi_arg = search_arg.lower().split(split_arg)
         for arg in multi_arg:
-            query_bases(bases, arg, query_result)
+            query_bases(base_list, arg, query_result)
     else:
-        query_bases(bases, search_arg, query_result)
+        query_bases(base_list, search_arg, query_result)
     return query_result.bases
 
 

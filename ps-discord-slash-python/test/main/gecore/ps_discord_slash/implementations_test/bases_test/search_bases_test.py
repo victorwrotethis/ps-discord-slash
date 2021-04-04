@@ -1,6 +1,6 @@
 import unittest
 
-from gecore.ps_discord_slash.bases.search_bases import find_bases
+from gecore.ps_discord_slash.implementations.bases.search_bases import find_bases
 
 
 class SearchBasesTest(unittest.TestCase):
@@ -25,7 +25,6 @@ class SearchBasesTest(unittest.TestCase):
         }
         result = find_bases(bases, search_arg)
         self.assertEqual({'AuraxiCom Network Hub': 222060, 'Auraxis Firearms Corp.': 218000}, result)
-
 
     def test_find_base_multi(self):
         search_arg = 'hvar, mao'

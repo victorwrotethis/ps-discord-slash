@@ -1,6 +1,6 @@
 import unittest
 
-from gecore.ps_discord_slash.bases.models.base_response import create_base_embeds, create_base_response
+from gecore.ps_discord_slash.implementations.bases.models.base_response import create_base_embeds, create_base_response
 from gecore.ps_discord_slash.models.response_models import generic_response
 
 
