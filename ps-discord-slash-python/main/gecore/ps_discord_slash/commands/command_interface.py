@@ -1,14 +1,6 @@
-from enum import Enum
-
 from gecore.ps_discord_slash.models.commands import ApplicationCommand
+from gecore.ps_discord_slash.commands.command_name_interface import SlashCommandName
 from gecore.ps_discord_slash.models.interactions import InteractionResponse
-
-
-class SlashCommandName(Enum):
-
-    @staticmethod
-    def provide_members():
-        pass
 
 
 class ISlashCommand:

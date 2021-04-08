@@ -48,7 +48,7 @@ class Interaction:
 
 # https://discord.com/developers/docs/interactions/slash-commands#interaction-interactionapplicationcommandcallbackdata
 class InteractionResponseData:
-    def __init__(self, content, embeds, flags: DiscordFlags):
+    def __init__(self, content, flags: DiscordFlags, embeds=None):
         self.tts = False
         self.content = content
         self.flags = flags

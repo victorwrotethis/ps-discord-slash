@@ -1,6 +1,8 @@
 from enum import IntEnum
 from typing import List
 
+from gecore.ps_discord_slash.commands.command_name_interface import SlashCommandName
+
 
 class ApplicationCommandOptionType(IntEnum):
     """"reflects: https://discord.com/developers/docs/interactions/slash-commands#applicationcommandoptiontype"""
@@ -71,7 +73,7 @@ class ApplicationCommandSubmission:
         https://discord.com/developers/docs/interactions/slash-commands#create-guild-application-command
     """
 
-    def __init__(self, name: str, description: str, options: List[ApplicationCommandOption]):
+    def __init__(self, name: SlashCommandName, description: str, options: List[ApplicationCommandOption]):
         self.name = name
         self.description = description
         self.options = options
@@ -84,7 +86,7 @@ class ApplicationCommand:
     reflects: https://discord.com/developers/docs/interactions/slash-commands#applicationcommand
     """
 
-    def __init__(self, command_id: str, app_id: str, name: str, description: str,
+    def __init__(self, command_id: str, app_id: str, name: SlashCommandName, description: str,
                  version: int, guild_id: int, options: List[ApplicationCommandOption]):
         self.id = command_id
         self.application_id = app_id
@@ -93,3 +95,8 @@ class ApplicationCommand:
         self.version = version
         self.guild_id = guild_id
         self.options = options
+
+    def __getstate__(self):
+        return self.id, self.application_id, self.name, self.description, self.version, self.guild_id, self.options
+
+

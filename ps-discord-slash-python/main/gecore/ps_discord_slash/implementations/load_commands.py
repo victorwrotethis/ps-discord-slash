@@ -1,6 +1,5 @@
-from typing import List
+from typing import List, Type
 
-from gecore.ps_discord_slash.implementations.available_commands import build_search_base_id
 from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
 from gecore.ps_discord_slash.commands.models.slash_commands import GuildSlashCommand, GuildPermissions, \
     GuildSlashCommands
@@ -17,9 +16,9 @@ def load_guild_commands() -> List[GuildSlashCommands]:
         response_channel=JaegerEventChannel.SLASH_SPAM,
         allowed_roles=[role.value for role in JaegerEventRoles]
     )
-    sb_command_id = 790273936511336468
-    sb_command_guild_version = 809455046730186762
-    search_base_id = build_search_base_id(sb_command_id, guild_perms.guild, sb_command_guild_version)
+    sb_command_id = 828139760362192897
+    sb_command_guild_version = 828139760362192898
+    search_base_id = SearchBaseSlashCommand.build(sb_command_id, guild_perms.guild, sb_command_guild_version)
     sb_guild_command = GuildSlashCommand(search_base_id, guild_perms)
     return [GuildSlashCommands(search_base_id.guild_id, [sb_guild_command])]
 
