@@ -21,5 +21,3 @@ class OvOSlashCommand(SlashCommandName):
     @staticmethod
     def provide_members():
         return OvOSlashCommand.__members__.values()
-
-

@@ -8,7 +8,6 @@ class SlashCommandName(Enum):
     def provide_members():
         pass
 
-    @staticmethod
     def __getstate__(self):
         """Allows JsonPickle just to retrieve the value"""
         return self.value

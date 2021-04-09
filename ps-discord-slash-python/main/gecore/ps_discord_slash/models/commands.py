@@ -95,8 +95,3 @@ class ApplicationCommand:
         self.version = version
         self.guild_id = guild_id
         self.options = options
-
-    def __getstate__(self):
-        return self.id, self.application_id, self.name, self.description, self.version, self.guild_id, self.options
-
-
