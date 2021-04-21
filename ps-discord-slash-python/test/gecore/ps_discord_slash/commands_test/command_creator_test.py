@@ -1,5 +1,7 @@
 import unittest
 import json
+from unittest.mock import patch, MagicMock
+
 import jsonpickle
 
 from gecore.ps_discord_slash.implementations.available_commands import create_command_submission
@@ -7,7 +9,8 @@ from gecore.ps_discord_slash.implementations.bases.search_base_command import Se
 
 
 class CommandCreatorTest(unittest.TestCase):
-    def test_searchbaseid_command(self):
+    @patch('gecore.ps_discord_slash.implementations.bases.search_base_command.BasesParser')
+    def test_searchbaseid_command(self, mock_bases):
         """"Checks if commands generate the expected values in json"""
         # Arrange
         command_id = 1

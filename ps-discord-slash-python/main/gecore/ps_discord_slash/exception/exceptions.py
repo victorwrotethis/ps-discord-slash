@@ -10,3 +10,4 @@ class CommandException(Exception):
 class CommandExceptionMessage(str, Enum):
     CommandNotAvailable = "This command is no longer available but still registered at the guild"
     GuildCommandNotFound = "The command could not be found, unable to obtain permissions"
+    CommandNotInstanced = "The command-list requires instanced command variants"

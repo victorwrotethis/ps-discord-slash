@@ -2,13 +2,6 @@ import json
 import urllib.request
 import os
 
-#todo load bases through
-
-
-def load_facilities_file():
-    with open(determine_source()) as map_file:
-        return json.load(map_file)
-
 
 def load_facilities_remotely():
     url = "http://census.daybreakgames.com/get/ps2/map_region?c:limit=1000&c:show=facility_id,facility_name,facility_type_id,facility_type"
@@ -22,4 +15,9 @@ def determine_source():
     if lambda_task_root is not None:
         return lambda_task_root + '/resources/map_region.json'
     else:
-        return '../../../../resources/map_region.json'
+        return os.environ.get('MAP_REGION_LOCATION')
+
+
+def load_facilities_file():
+    with open(determine_source()) as map_file:
+        return json.load(map_file)

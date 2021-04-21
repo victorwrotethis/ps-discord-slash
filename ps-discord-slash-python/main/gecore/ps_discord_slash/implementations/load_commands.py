@@ -3,6 +3,7 @@ from typing import List, Type
 from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
 from gecore.ps_discord_slash.commands.models.slash_commands import GuildSlashCommand, GuildPermissions, \
     GuildSlashCommands
+from gecore.ps_discord_slash.exception.exceptions import CommandExceptionMessage, CommandException
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
 from gecore.ps_discord_slash.models.discord_config import GenericConfig, JaegerEventChannel, JaegerEventRoles
 
@@ -24,5 +25,12 @@ def load_guild_commands() -> List[GuildSlashCommands]:
 
 
 def load_commands() -> [ISlashCommand]:
-    command_list = [SearchBaseSlashCommand]
+    command_list = [SearchBaseSlashCommand()]
+    verify_if_instances(command_list)
     return command_list
+
+
+def verify_if_instances(commands: [ISlashCommand]):
+    for command in commands:
+        if not isinstance(command, ISlashCommand):
+            raise CommandException(CommandExceptionMessage.CommandNotInstanced)

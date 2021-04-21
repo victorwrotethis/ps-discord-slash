@@ -1,6 +1,7 @@
 from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
 from gecore.ps_discord_slash.implementations.available_commands import OvOSlashCommand
 from gecore.ps_discord_slash.implementations.bases.models.base_response import create_base_response
+from gecore.ps_discord_slash.implementations.bases.parse_bases import BasesParser
 from gecore.ps_discord_slash.implementations.bases.search_bases import find_bases
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
@@ -9,6 +10,9 @@ from gecore.ps_discord_slash.models.interactions import InteractionResponse
 
 
 class SearchBaseSlashCommand(ISlashCommand):
+
+    def __init__(self):
+        self.base_list = BasesParser().create_base_list()
 
     @staticmethod
     def identify() -> OvOSlashCommand:
@@ -31,8 +35,7 @@ class SearchBaseSlashCommand(ISlashCommand):
             )]
         )
 
-    @staticmethod
-    def execute(command_body: {}) -> InteractionResponse:
+    def execute(self, command_body: {}) -> InteractionResponse:
         search_arg = command_body['data']['options'][0]['value']
-        base_result = find_bases(search_arg)
+        base_result = find_bases(self.base_list, search_arg)
         return create_base_response(base_result, search_arg)

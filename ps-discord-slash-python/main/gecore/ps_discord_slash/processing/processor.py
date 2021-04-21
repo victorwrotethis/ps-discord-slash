@@ -4,9 +4,7 @@ from gecore.ps_discord_slash.commands.models.slash_commands import GuildSlashCom
 from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage
 from gecore.ps_discord_slash.models.default_interaction_responses import default_command_channel, forbidden_response, \
     not_configured_response
-from gecore.ps_discord_slash.models.flags import DiscordFlags
-from gecore.ps_discord_slash.models.interactions import InteractionResponseType, InteractionResponse, \
-    InteractionResponseData
+from gecore.ps_discord_slash.models.interactions import InteractionResponseType, InteractionResponse
 from gecore.ps_discord_slash.processing.role_checker import check_if_correct_channel, check_if_allowed_role
 
 guilds_command_list = load_guild_commands()
@@ -17,7 +15,6 @@ def process_command(command_body: {}) -> InteractionResponse:
     incoming_guild_id = int(command_body['guild_id'])
     for guild_commands in guilds_command_list:
         if guild_commands.guild_id == incoming_guild_id:
-            print(command_body)
             ovo_command, guild_slash_command = find_command(command_body['data']['name'], guild_commands)
             return process_guild_command(command_body, guild_slash_command, ovo_command)
         else:
@@ -41,7 +38,7 @@ def process_guild_command(command_body: {}, guild_slash_command: GuildSlashComma
 
 def process_actual_command(command_body: {}, slash_command: ISlashCommand):
     """"Will execute the interface method"""
-    return slash_command.execute(command_body)
+    return slash_command.execute(command_body=command_body)
 
 
 def find_command(incoming_command: str, guild_command_list: GuildSlashCommands) -> {ISlashCommand, GuildSlashCommand}:

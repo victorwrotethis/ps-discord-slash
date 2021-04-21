@@ -15,7 +15,6 @@ class ISlashCommand:
         """Builds an existing command"""
         pass
 
-    @staticmethod
-    def execute(command_body: {}) -> InteractionResponse:
+    def execute(self, command_body: {}) -> InteractionResponse:
         """Executes the tied command"""
         pass
