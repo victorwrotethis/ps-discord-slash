@@ -10,7 +10,7 @@ class LoadBasesTest(unittest.TestCase):
     def test_determine_source(self):
         os.environ['LAMBDA_TASK_ROOT'] = '../../../..'
         result = determine_source()
-        print(result)
+        map_file = None
         try:
             map_file = open(result)
             loaded_map = json.load(map_file)
