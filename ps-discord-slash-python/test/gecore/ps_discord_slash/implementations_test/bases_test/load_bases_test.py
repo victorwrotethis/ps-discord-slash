@@ -8,7 +8,7 @@ from gecore.ps_discord_slash.implementations.bases.load_bases import determine_s
 class LoadBasesTest(unittest.TestCase):
 
     def test_determine_source(self):
-        os.environ['LAMBDA_TASK_ROOT'] = '../../../..'
+        os.environ['MAP_REGION_LOCATION'] = '../../../../resources/map_region.json'
         result = determine_source()
         map_file = None
         try:
