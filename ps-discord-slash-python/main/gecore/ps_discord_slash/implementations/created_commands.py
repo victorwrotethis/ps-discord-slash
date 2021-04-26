@@ -12,9 +12,10 @@ def create_command_submission(command: ApplicationCommand):
 
 class OvOSlashCommand(SlashCommandName):
     SEARCH_BASE_ID = 'searchbaseid'
-    REQUEST_ACCOUNTS = 'requestaccounts'
-    REQUEST_ACCOUNT = 'requestaccount'
+    REQUEST_ACCOUNT = 'request_account'
+    REQUEST_ACCOUNTS = 'request_accounts'
     RESERVATION = 'reservation'
+    MANAGE_COMMAND = 'manage'
 
     @staticmethod
     def provide_members():

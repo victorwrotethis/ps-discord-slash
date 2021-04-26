@@ -1,5 +1,7 @@
 from typing import List
 
+from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
+from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage
 from gecore.ps_discord_slash.models.commands import ApplicationCommand
 
 
@@ -28,3 +30,9 @@ class GuildSlashCommands:
     def __init__(self, guild_id: int, commands: List[GuildSlashCommand]):
         self.guild_id = guild_id
         self.guild_commands = commands
+
+    def find_guild_command(self, incoming_command: ISlashCommand) -> GuildSlashCommand:
+        for guild_command in self.guild_commands:
+            if guild_command.command.name == incoming_command.identify():
+                return guild_command
+        raise CommandException(CommandExceptionMessage.GuildCommandNotFound)

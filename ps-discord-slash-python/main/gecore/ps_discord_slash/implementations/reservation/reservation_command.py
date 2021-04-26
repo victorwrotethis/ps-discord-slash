@@ -1,11 +1,15 @@
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
-from gecore.ps_discord_slash.implementations.available_commands import OvOSlashCommand
+from gecore.ps_discord_slash.commands.command_interface import ISlashCommand, SlashCommandType
+from gecore.ps_discord_slash.implementations.created_commands import OvOSlashCommand
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
 
 
 class ReservationSlashCommand(ISlashCommand):
+
+    @staticmethod
+    def command_type() -> SlashCommandType:
+        return SlashCommandType.GUILD
 
     @staticmethod
     def identify() -> OvOSlashCommand:

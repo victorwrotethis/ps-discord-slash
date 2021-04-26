@@ -1,4 +1,4 @@
-from gecore.ps_discord_slash.commands.models.slash_commands import GuildPermissions
+from gecore.ps_discord_slash.commands.models.guild_commands import GuildPermissions
 
 
 def request_account(account_group, ):

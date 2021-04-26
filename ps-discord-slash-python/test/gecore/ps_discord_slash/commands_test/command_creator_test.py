@@ -4,7 +4,7 @@ from unittest.mock import patch, MagicMock
 
 import jsonpickle
 
-from gecore.ps_discord_slash.implementations.available_commands import create_command_submission
+from gecore.ps_discord_slash.implementations.created_commands import create_command_submission
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
 
 

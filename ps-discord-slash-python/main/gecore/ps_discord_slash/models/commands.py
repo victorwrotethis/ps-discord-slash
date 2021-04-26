@@ -30,8 +30,8 @@ class ApplicationCommandOptionChoice:
         self.name = name
         self.value = value
 
-    def __getstate__(self):
-        return self.name, self.value
+    # def __getstate__(self):
+    #     return self.name, self.value
 
 
 class ApplicationCommandOption:
@@ -57,6 +57,11 @@ class ApplicationCommandOption:
             del state['default']
         if not state['required']:
             del state['required']
+        else:
+            if state['required']:
+                state['required'] = 'true'
+            else:
+                state['required'] = 'false'
         if not state['choices']:
             del state['choices']
         if not state['options']:

@@ -1,8 +1,8 @@
 import json
 import unittest
 
-from gecore.ps_discord_slash.implementations.available_commands import OvOSlashCommand
-from gecore.ps_discord_slash.implementations.load_commands import load_guild_commands
+from gecore.ps_discord_slash.implementations.created_commands import OvOSlashCommand
+from gecore.ps_discord_slash.commands.models.available_commands import load_guild_commands
 from gecore.ps_discord_slash.processing.processor import find_command, process_command
 
 

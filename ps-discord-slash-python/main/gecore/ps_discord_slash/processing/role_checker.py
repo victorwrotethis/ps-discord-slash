@@ -1,6 +1,6 @@
 from typing import List
 
-from gecore.ps_discord_slash.commands.models.slash_commands import GuildSlashCommand
+from gecore.ps_discord_slash.commands.models.guild_commands import GuildSlashCommand
 
 
 def check_if_allowed_role(role_list: List[str], guild_command: GuildSlashCommand) -> bool:

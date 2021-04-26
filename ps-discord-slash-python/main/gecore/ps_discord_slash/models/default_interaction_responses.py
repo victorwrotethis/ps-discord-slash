@@ -1,4 +1,4 @@
-from gecore.ps_discord_slash.commands.models.slash_commands import GuildSlashCommand
+from gecore.ps_discord_slash.commands.models.guild_commands import GuildSlashCommand
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 from gecore.ps_discord_slash.models.interactions import InteractionResponseData
 

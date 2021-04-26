@@ -1,5 +1,5 @@
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
-from gecore.ps_discord_slash.implementations.available_commands import OvOSlashCommand
+from gecore.ps_discord_slash.commands.command_interface import ISlashCommand, SlashCommandType
+from gecore.ps_discord_slash.implementations.created_commands import OvOSlashCommand
 from gecore.ps_discord_slash.implementations.bases.models.base_response import create_base_response
 from gecore.ps_discord_slash.implementations.bases.parse_bases import BasesParser
 from gecore.ps_discord_slash.implementations.bases.search_bases import find_bases
@@ -13,6 +13,10 @@ class SearchBaseSlashCommand(ISlashCommand):
 
     def __init__(self):
         self.base_list = BasesParser().create_base_list()
+
+    @staticmethod
+    def command_type() -> SlashCommandType:
+        return SlashCommandType.GUILD
 
     @staticmethod
     def identify() -> OvOSlashCommand:
