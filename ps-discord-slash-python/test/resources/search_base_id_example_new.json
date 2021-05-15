@@ -1,0 +1,46 @@
+{
+    "application_id": "789525379047358464",
+    "channel_id": "738473349042274324",
+    "data": {
+        "id": "790273936511336468",
+        "name": "searchbaseid",
+        "options": [
+            {
+                "name": "byname",
+                "type": 3,
+                "value": "hvar"
+            }
+        ]
+    },
+    "guild_id": "207168033918025729",
+    "id": "824469237418033202",
+    "member": {
+        "deaf": false,
+        "is_pending": false,
+        "joined_at": "2016-08-15T22:22:27.871000+00:00",
+        "mute": false,
+        "nick": null,
+        "pending": false,
+        "permissions": "8589934591",
+        "premium_since": null,
+        "roles": [
+            "207168817749557248",
+            "332587654111821827",
+            "333398154739187722",
+            "711008764291186698",
+            "711355090711216210",
+            "739498857192489020",
+            "813235123419086848"
+        ],
+        "user": {
+            "avatar": "omitted",
+            "discriminator": "omitted",
+            "id": "omitted",
+            "public_flags": 512,
+            "username": "omitted"
+        }
+    },
+    "token": "omitted",
+    "type": 2,
+    "version": 1
+}

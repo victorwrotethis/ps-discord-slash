@@ -1,4 +1,4 @@
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand, SlashCommandType
+from gecore.ps_discord_slash.commands.command_interface import ISlashCommand, SlashCommandType, StartingPerms
 from gecore.ps_discord_slash.implementations.created_commands import OvOSlashCommand
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
@@ -14,6 +14,10 @@ class ReservationSlashCommand(ISlashCommand):
     @staticmethod
     def identify() -> OvOSlashCommand:
         return OvOSlashCommand.RESERVATION
+
+    @staticmethod
+    def starting_perms() -> StartingPerms:
+        return StartingPerms.ADMINISTRATOR_ONLY
 
     @staticmethod
     def build(command_id: int, guild_id: int, version: int) -> ApplicationCommand:

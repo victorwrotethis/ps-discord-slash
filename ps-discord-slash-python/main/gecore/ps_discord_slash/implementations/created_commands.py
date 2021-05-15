@@ -1,13 +1,4 @@
 from gecore.ps_discord_slash.commands.command_name_interface import SlashCommandName
-from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandSubmission
-
-
-def create_command_submission(command: ApplicationCommand):
-    return ApplicationCommandSubmission(
-        name=command.name,
-        description=command.description,
-        options=command.options
-    )
 
 
 class OvOSlashCommand(SlashCommandName):

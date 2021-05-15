@@ -11,20 +11,25 @@ class SlashCommandType(Enum):
     Global commands can be used in any guild and direct messages.
     For more info: https://discord.com/developers/docs/interactions/slash-commands#registering-a-command
     """
-    GLOBAL = 1,
+    GLOBAL = 1
     GUILD = 2
 
 
-class ISlashCommand:
+class StartingPerms(Enum):
+    """
+    Starting permissions for commands meant for when a command just got available to users.
+    --Variants--
+    ADMINISTRATOR_ONLY: This command can never deviate from being used only by guild administrators.
+    ADMINISTRATOR: Can initially only be used by guild administrators, but it can be modified after to allow others.
+    EVERYONE: Literally every user that has access to slash commands can use this command from the start.
+    """
+    ADMINISTRATOR_ONLY = 1
+    ADMINISTRATOR = 2
+    EVERYONE = 3
 
-    @staticmethod
-    def allow_dm_usage() -> bool:
-        """Signifies if this particular command is allowed in DMs
-        Only has an effect on Global Commands.
-        If false, this means the command will only be accepted when used in guilds.
-        Default is False
-        """
-        return False
+
+class ISlashCommand:
+    """"Can be extended when creating normal Guild type commands"""
 
     @staticmethod
     def command_type() -> SlashCommandType:
@@ -36,6 +41,14 @@ class ISlashCommand:
         pass
 
     @staticmethod
+    def starting_perms() -> StartingPerms:
+        """
+        Returns who can use the commands when the command becomes initially available
+        Only meant to be used before the Discord Slash and bigger GuildPermission system
+        """
+        pass
+
+    @staticmethod
     def build(command_id: int, guild_id: int, version: int) -> ApplicationCommand:
         """Builds an existing command"""
         pass
@@ -43,3 +56,16 @@ class ISlashCommand:
     def execute(self, command_body: {}) -> InteractionResponse:
         """Executes the tied command"""
         pass
+
+
+class IGlobalSlashCommand(ISlashCommand):
+    """"Global Slash commands"""
+
+    @staticmethod
+    def allow_dm_usage() -> bool:
+        """
+        Signifies if this particular command is allowed in DMs
+        If false, this means the command will only be accepted when used in guilds.
+        Default is False
+        """
+        return False

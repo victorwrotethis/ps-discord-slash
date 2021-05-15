@@ -4,9 +4,9 @@ import unittest
 import jsonpickle
 
 from gecore.ps_discord_slash.app import lambda_handler
-from gecore.ps_discord_slash.implementations.command_introducer.manage_command_command import \
+from gecore.ps_discord_slash.commands.command_manager.manage_command_command import \
     ManageCommandSlashCommand
-from gecore.ps_discord_slash.implementations.created_commands import create_command_submission
+from gecore.ps_discord_slash.commands.command_manager.manage_commands import create_command_submission
 
 
 class AppTest(unittest.TestCase):
