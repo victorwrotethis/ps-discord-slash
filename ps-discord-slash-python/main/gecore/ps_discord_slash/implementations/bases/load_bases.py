@@ -19,5 +19,6 @@ def determine_source():
 
 
 def load_facilities_file():
-    with open(determine_source()) as map_file:
+    returned_source = determine_source()
+    with open(returned_source) as map_file:
         return json.load(map_file)

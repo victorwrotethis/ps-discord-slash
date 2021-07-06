@@ -1,4 +1,5 @@
-from gecore.ps_discord_slash.commands.models.guild_commands import GuildSlashCommand
+from gecore.ps_discord_slash.commands.models.local_commands import SlashCommand
+from gecore.ps_discord_slash.exception.exceptions import CommandExceptionMessage
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 from gecore.ps_discord_slash.models.interactions import InteractionResponseData
 
@@ -21,7 +22,18 @@ def not_configured_response() -> InteractionResponseData:
         flags=DiscordFlags.HIDDEN)
 
 
-def default_command_channel(guild_slash_command: GuildSlashCommand) -> InteractionResponseData:
+def command_error_response(message: CommandExceptionMessage) -> InteractionResponseData:
     return InteractionResponseData(
-        content=f'Please use the <#{guild_slash_command.perms.default_channel}> channel instead.',
+        content=message,
         flags=DiscordFlags.HIDDEN)
+
+
+def default_command_channel(guild_slash_command: SlashCommand) -> InteractionResponseData:
+    if guild_slash_command.perms.default_channel:
+        return InteractionResponseData(
+            content=f'Please use the <#{guild_slash_command.perms.default_channel}> channel instead.',
+            flags=DiscordFlags.HIDDEN)
+    else:
+        return InteractionResponseData(
+            content=f'You cannot use this command in this channel, but no default recommendation has been added',
+            flags=DiscordFlags.HIDDEN)

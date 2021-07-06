@@ -1,11 +1,11 @@
 from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
-from gecore.ps_discord_slash.commands.models.guild_commands import GuildSlashCommand
+from gecore.ps_discord_slash.commands.models.local_commands import SlashCommand
 from gecore.ps_discord_slash.models.default_interaction_responses import default_command_channel, forbidden_response
 from gecore.ps_discord_slash.models.interactions import InteractionResponseType, InteractionResponse
-from gecore.ps_discord_slash.processing.role_checker import check_if_correct_channel, check_if_allowed_role
+from gecore.ps_discord_slash.processing.perm_checker import check_if_correct_channel, check_if_allowed_role
 
-
-def process_guild_command(command_body: {}, guild_command: GuildSlashCommand, command: ISlashCommand) \
+# deprecated
+def process_guild_command(command_body: {}, guild_command: SlashCommand, command: ISlashCommand) \
         -> InteractionResponse:
     """"Will perform the command if it is allowed to be executed based on channel and roles"""
     if check_if_allowed_role(command_body['member']['roles'], guild_command):

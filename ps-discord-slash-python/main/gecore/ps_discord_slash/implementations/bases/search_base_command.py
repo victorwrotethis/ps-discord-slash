@@ -27,7 +27,7 @@ class SearchBaseSlashCommand(ISlashCommand):
         return SlashCommandType.GUILD
 
     @staticmethod
-    def build(command_id: int, guild_id: int, version: int) -> ApplicationCommand:
+    def build(command_id: int, version: int, guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
             command_id=str(command_id),
             app_id=str(GenericConfig.APP_ID),

@@ -25,7 +25,7 @@ class ReservationSlashCommand(ISlashCommand):
             command_id=str(command_id),
             app_id=str(GenericConfig.APP_ID),
             name=OvOSlashCommand.RESERVATION,
-            description='Search a facility Id [v2]',
+            description='Reserve a base [v2]',
             version=version,
             guild_id=guild_id,
             options=[ApplicationCommandOption(

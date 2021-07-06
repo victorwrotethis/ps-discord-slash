@@ -6,7 +6,7 @@ class OvOSlashCommand(SlashCommandName):
     REQUEST_ACCOUNT = 'request_account'
     REQUEST_ACCOUNTS = 'request_accounts'
     RESERVATION = 'reservation'
-    MANAGE_COMMAND = 'manage'
+    TEST_GLOBAL = 'globaltest'
 
     @staticmethod
     def provide_members():

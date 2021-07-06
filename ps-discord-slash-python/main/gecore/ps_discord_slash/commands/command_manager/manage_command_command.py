@@ -30,11 +30,11 @@ class ManageCommandSlashCommand(IGlobalSlashCommand):
         return StartingPerms.ADMINISTRATOR_ONLY
 
     @staticmethod
-    def build(command_id: int, guild_id: int, version: int) -> ApplicationCommand:
+    def build(command_id: int, version: int, guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
             command_id=str(command_id),
             app_id=str(GenericConfig.APP_ID),
-            name=OvOSlashCommand.MANAGE_COMMAND,
+            name=ManageCommand.MANAGE_COMMAND,
             description='Manage a particular command',
             version=version,
             guild_id=guild_id,

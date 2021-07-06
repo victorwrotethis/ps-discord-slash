@@ -1,6 +1,6 @@
 import unittest
 
-from gecore.ps_discord_slash.processing.role_checker import check_if_allowed_role
+from gecore.ps_discord_slash.processing.perm_checker import check_if_allowed_role
 
 # todo update to reflect changes to models
 

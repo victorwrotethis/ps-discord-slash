@@ -87,12 +87,12 @@ class ApplicationCommandSubmission:
 class ApplicationCommand:
     """
     Resulting application command response from Discord API upon creating command.
-    It is recommended making the name camelcase for clarity, even though Discord will lowercase it.
+    The name has to be camel case.
     reflects: https://discord.com/developers/docs/interactions/slash-commands#applicationcommand
     """
 
     def __init__(self, command_id: str, app_id: str, name: SlashCommandName, description: str,
-                 version: int, guild_id: int, options: List[ApplicationCommandOption]):
+                 version: int, guild_id: int = None, options: List[ApplicationCommandOption] = None):
         self.id = command_id
         self.application_id = app_id
         self.name = name
