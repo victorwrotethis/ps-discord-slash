@@ -1,5 +1,6 @@
 from typing import List
 
+from gecore.ps_discord_slash.commands.command_interface import ISlashCommand, IGlobalSlashCommand
 from gecore.ps_discord_slash.commands.models.local_commands import SlashCommand
 from gecore.ps_discord_slash.commands.models.local_permissions import CommandPermissionResult
 from gecore.ps_discord_slash.models.default_interaction_responses import forbidden_response, default_command_channel
@@ -23,8 +24,9 @@ def check_if_permitted(command_body: {}, slash_command: SlashCommand) -> Command
             if not check_if_allowed_user(command_body['member']['user']['id'], slash_command):
                 return CommandPermissionResult(False, forbidden_response())
         else:
-            if not check_if_allowed_user(command_body['user']['id'], slash_command):
-                return CommandPermissionResult(False, forbidden_response())
+            if 'user' in command_body:
+                if not check_if_allowed_user(command_body['user']['id'], slash_command):
+                    return CommandPermissionResult(False, forbidden_response())
     if perms.request_channels:
         if not check_if_correct_channel(command_body['channel_id'], slash_command):
             return CommandPermissionResult(False, default_command_channel(slash_command))

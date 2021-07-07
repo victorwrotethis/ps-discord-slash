@@ -1,3 +1,5 @@
+from typing import List
+
 from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
 from gecore.ps_discord_slash.commands.models.local_commands import GuildSlashCommands, SlashCommand
 from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage
@@ -19,7 +21,7 @@ def find_guild_commands(incoming_guild_id: int) -> GuildSlashCommands:
 
 
 def create_guild_list(guild_id: int) -> GuildSlashCommands:
-    guild_slash_commands = GuildSlashCommands(guild_id)
+    guild_slash_commands = GuildSlashCommands(guild_id, [])
     guild_manager.introduce_guild(guild_slash_commands)
     return guild_slash_commands
 

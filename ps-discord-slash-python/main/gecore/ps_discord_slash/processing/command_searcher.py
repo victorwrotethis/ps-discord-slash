@@ -15,7 +15,7 @@ def check_for_guild_and_command(slash_command: ISlashCommand, incoming_guild_id:
         if err.message is CommandExceptionMessage.GuildNotFound:
             guild_global_command = create_guild_and_add_global(slash_command, incoming_guild_id)
             return CommandSearchResult(has_been_found=True, found_command=guild_global_command)
-        return CommandSearchResult(has_been_found=False, error=err)
+        return CommandSearchResult(has_been_found=False, error_response=err)
 
 
 def check_for_command_in_guild(slash_command: ISlashCommand, guild_and_its_commands: GuildSlashCommands) \
@@ -28,7 +28,7 @@ def check_for_command_in_guild(slash_command: ISlashCommand, guild_and_its_comma
         if err.message is CommandExceptionMessage.GuildCommandNotFound:
             guild_command = add_global_to_guild(slash_command, guild_and_its_commands)
             return CommandSearchResult(has_been_found=True, found_command=guild_command)
-        return CommandSearchResult(has_been_found=False, error=err)
+        return CommandSearchResult(has_been_found=False, error_response=err)
 
 
 def check_for_command_in_global(slash_command: ISlashCommand) -> CommandSearchResult:
@@ -36,4 +36,4 @@ def check_for_command_in_global(slash_command: ISlashCommand) -> CommandSearchRe
         global_command = find_global_command(slash_command)
         return CommandSearchResult(has_been_found=True, found_command=global_command)
     except CommandException as err:
-        return CommandSearchResult(has_been_found=False, error=err)
+        return CommandSearchResult(has_been_found=False, error_response=err)

@@ -33,13 +33,13 @@ class GuildSlashCommands(SlashCommands):
     Includes Guild id and provides a different message when the guild has no configuration for the command.
     Creates a new list if no command list is supplied.
     """
-    def __init__(self, guild_id: int, commands: List[SlashCommand] = List[SlashCommand]):
+    def __init__(self, guild_id: int, commands: List[SlashCommand]):
         super().__init__(commands, CommandExceptionMessage.GuildCommandNotFound)
         self.guild_id = guild_id
 
 
 class CommandSearchResult:
-    def __init__(self, has_been_found: bool, found_command: SlashCommand = None, error: CommandException = None):
+    def __init__(self, has_been_found: bool, found_command: SlashCommand = None, error_response: CommandException = None):
         self.has_been_found = has_been_found
         self.found_command = found_command
-        self.error = error
+        self.error_response = error_response

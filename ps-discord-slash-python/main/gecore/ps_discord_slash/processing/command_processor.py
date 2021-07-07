@@ -69,9 +69,14 @@ def segment_and_execute(command_body: {}, slash_command: ISlashCommand) -> Inter
             if permission_check_result.approved:
                 if slash_command.starting_perms().EVERYONE:
                     return slash_command.execute(command_body)
+            else:
+                return InteractionResponse(
+                    InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE, permission_check_result.error_response
+                )
         else:
             return InteractionResponse(
-                InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE, command_search_result.error.message
+                InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                command_error_response(command_search_result.error_response.message)
             )
 
 # todo

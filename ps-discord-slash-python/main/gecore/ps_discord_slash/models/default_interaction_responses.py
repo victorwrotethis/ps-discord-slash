@@ -24,7 +24,7 @@ def not_configured_response() -> InteractionResponseData:
 
 def command_error_response(message: CommandExceptionMessage) -> InteractionResponseData:
     return InteractionResponseData(
-        content=message,
+        content=f'{message.value}',
         flags=DiscordFlags.HIDDEN)
 
 
