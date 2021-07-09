@@ -2,22 +2,19 @@ from gecore.ps_discord_slash.commands.command_manager.manage_command_command imp
 from gecore.ps_discord_slash.commands.models.available_commands import AvailableCommands
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
 from gecore.ps_discord_slash.implementations.unplug.unplug_command import UnplugSlashCommand
+from gecore.ps_discord_slash.processing.command_processor import CommandProcessor, available_commands_attr
 
 
-class LoadedCommands:
-    """Defers loading the commands until needed"""
-    available_commands: AvailableCommands
+def check_if_commands_loaded(command_processor: CommandProcessor):
+    if not hasattr(command_processor, available_commands_attr):
+        load_commands(command_processor)
 
-    def load_commands(self):
-        self.available_commands = AvailableCommands([
-            SearchBaseSlashCommand(),
-            ManageCommandSlashCommand(),
-            UnplugSlashCommand()
-        ])
 
-    # def retrieve_command_from_pool(self, incoming_command: str):
-    #     if self.available_commands.command_list:
-    #         return self.available_commands.retrieve_command(incoming_command)
-    #     else:
+def load_commands(command_processor: CommandProcessor):
+    command_processor.add_commands(
+        AvailableCommands(
+            command_list=[SearchBaseSlashCommand(), ManageCommandSlashCommand(), UnplugSlashCommand()]
+        )
+    )
 
 

@@ -9,6 +9,10 @@ class AvailableCommands:
         verify_if_command_instances(command_list)
         self.command_list = command_list
 
+    def add_command(self, command: ISlashCommand):
+        verify_if_command_instance(command)
+        self.command_list.append(command)
+
     def retrieve_command(self, incoming_command: str) -> ISlashCommand:
         for slash_command in self.command_list:
             if slash_command.identify().value == incoming_command:
@@ -20,3 +24,8 @@ def verify_if_command_instances(commands: [ISlashCommand]):
     for command in commands:
         if not isinstance(command, ISlashCommand):
             raise CommandException(CommandExceptionMessage.CommandNotInstanced)
+
+
+def verify_if_command_instance(command: ISlashCommand):
+    if not isinstance(command, ISlashCommand):
+        raise CommandException(CommandExceptionMessage.CommandNotInstanced)

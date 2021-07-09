@@ -1,6 +1,5 @@
 from typing import List
 
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand, IGlobalSlashCommand
 from gecore.ps_discord_slash.commands.models.local_commands import SlashCommand
 from gecore.ps_discord_slash.commands.models.local_permissions import CommandPermissionResult
 from gecore.ps_discord_slash.models.default_interaction_responses import forbidden_response, default_command_channel
