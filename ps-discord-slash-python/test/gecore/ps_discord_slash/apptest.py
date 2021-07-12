@@ -4,8 +4,8 @@ import unittest
 import jsonpickle
 
 from gecore.ps_discord_slash.app import lambda_handler
-from gecore.ps_discord_slash.commands.command_manager.manage_command_command import \
-    ManageCommandSlashCommand
+from gecore.ps_discord_slash.commands.command_manager.command_manager_command import \
+    CommandManagerSlashCommand
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import create_command_submission
 
 
@@ -17,7 +17,7 @@ class AppTest(unittest.TestCase):
         print(result)
 
     def test_command(self):
-        command = ManageCommandSlashCommand.build(1, 1, 1)
+        command = CommandManagerSlashCommand.build(1, 1, 1)
         submission = create_command_submission(command)
         result = json.loads(jsonpickle.encode(submission, unpicklable=False))
         print(json.dumps(result))

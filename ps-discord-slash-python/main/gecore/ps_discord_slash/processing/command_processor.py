@@ -1,9 +1,10 @@
 import logging
 
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
+from gecore.ps_discord_slash.commands.command_interface import ISlashCommand, IGlobalSlashCommand
 from gecore.ps_discord_slash.commands.models.available_commands import AvailableCommands
 from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage
-from gecore.ps_discord_slash.models.default_interaction_responses import command_error_response, not_configured_response
+from gecore.ps_discord_slash.models.default_interaction_responses import command_error_response, \
+    not_configured_response, forbidden_dm_response
 from gecore.ps_discord_slash.models.interactions import InteractionResponse, InteractionResponseType
 from gecore.ps_discord_slash.processing.command_searcher import check_for_guild_and_command, check_for_command_in_global
 from gecore.ps_discord_slash.processing.perm_checker import check_if_permitted
@@ -16,6 +17,9 @@ class CommandProcessor:
 
     def add_commands(self, available_commands: AvailableCommands):
         self.available_commands = available_commands
+
+    def add_command(self, command: ISlashCommand):
+        self.available_commands.add_command(command)
 
     def process_command_request(self, command_body: {}) -> InteractionResponse:
         """Tries to find the command and sends it off to check if it can be executed."""
@@ -59,6 +63,9 @@ def segment_and_execute(command_body: {}, slash_command: ISlashCommand) -> Inter
     # check if error is command not found?
     # todo process as command that might have guild perms
     else:
+        if isinstance(slash_command, IGlobalSlashCommand):
+            if not slash_command.allow_dm_usage():
+                return InteractionResponse(InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE, forbidden_dm_response())
         command_search_result = check_for_command_in_global(slash_command)
         if command_search_result.has_been_found:
             global_command = command_search_result.found_command

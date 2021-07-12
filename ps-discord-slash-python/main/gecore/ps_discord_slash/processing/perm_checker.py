@@ -54,8 +54,3 @@ def check_if_allowed_user(user_id: str, guild_command: SlashCommand) -> bool:
     else:
         return False
 
-
-def return_not_permitted() -> InteractionResponse:
-    return InteractionResponse(
-        InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE, forbidden_response()
-    )

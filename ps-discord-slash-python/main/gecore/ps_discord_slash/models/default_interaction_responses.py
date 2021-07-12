@@ -16,6 +16,12 @@ def forbidden_response() -> InteractionResponseData:
         flags=DiscordFlags.HIDDEN)
 
 
+def forbidden_dm_response() -> InteractionResponseData:
+    return InteractionResponseData(
+        content='You are not allowed to use this command in Direct Messages',
+        flags=DiscordFlags.HIDDEN)
+
+
 def not_configured_response() -> InteractionResponseData:
     return InteractionResponseData(
         content='This command has not been configured',

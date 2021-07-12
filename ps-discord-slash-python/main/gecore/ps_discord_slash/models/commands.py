@@ -38,7 +38,7 @@ class ApplicationCommandOption:
     """
     Creates new Discord ApplicationCommandOption option. A maximum of 10 choices is allowed.
     It is recommended making the name camelcase for clarity, even though Discord will lowercase it.
-    reflects: https://discord.com/developers/docs/interactions/slash-commands#applicationcommandoption
+    reflects: https://discord.com/developers/docs/interactions/slash-commands#application-command-object-application-command-option-structure
     """
 
     def __init__(self, a_type: ApplicationCommandOptionType, name: str, description: str, **kwargs):

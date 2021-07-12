@@ -6,10 +6,15 @@ class AvailableCommands:
     command_list = [ISlashCommand]
 
     def __init__(self, command_list: [ISlashCommand]):
+        """"Creates the command list to make your own created commands available to be recognised and used"""
         verify_if_command_instances(command_list)
         self.command_list = command_list
 
     def add_command(self, command: ISlashCommand):
+        """
+        Adds any command to the pool to be available to be recognised and used.
+        Mainly used to add the CommandManager Command afterwards.
+        """
         verify_if_command_instance(command)
         self.command_list.append(command)
 

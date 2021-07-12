@@ -1,4 +1,4 @@
-from gecore.ps_discord_slash.commands.command_manager.manage_command_command import ManageCommandSlashCommand
+from gecore.ps_discord_slash.commands.command_manager.command_manager_command import CommandManagerSlashCommand
 from gecore.ps_discord_slash.commands.models.available_commands import AvailableCommands
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
 from gecore.ps_discord_slash.implementations.unplug.unplug_command import UnplugSlashCommand
@@ -13,8 +13,7 @@ def check_if_commands_loaded(command_processor: CommandProcessor):
 def load_commands(command_processor: CommandProcessor):
     command_processor.add_commands(
         AvailableCommands(
-            command_list=[SearchBaseSlashCommand(), ManageCommandSlashCommand(), UnplugSlashCommand()]
+            command_list=[SearchBaseSlashCommand(), UnplugSlashCommand()]
         )
     )
-
-
+    command_processor.add_command(CommandManagerSlashCommand(command_processor.available_commands))
