@@ -68,11 +68,6 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
                             name=ManageCommands.REMOVE.value,
                             description='Remove a role from being allowed to use a command',
                             a_type=ApplicationCommandOptionType.ROLE
-                        ),
-                        ApplicationCommandOption(
-                            name=ManageCommands.LIST.value,
-                            description='List all roles being allowed to use a command',
-                            a_type=ApplicationCommandOptionType.BOOLEAN
                         )
                     ]
                 ),
@@ -90,11 +85,6 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
                             name=ManageCommands.REMOVE.value,
                             description='Remove a channel where a specific command can be used',
                             a_type=ApplicationCommandOptionType.CHANNEL
-                        ),
-                        ApplicationCommandOption(
-                            name=ManageCommands.LIST.value,
-                            description='List all channels where a specific command can be used',
-                            a_type=ApplicationCommandOptionType.BOOLEAN
                         )
                     ]
                 ),
@@ -112,11 +102,6 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
                             name=ManageCommands.REMOVE.value,
                             description='Remove a user that can use a specific command',
                             a_type=ApplicationCommandOptionType.USER
-                        ),
-                        ApplicationCommandOption(
-                            name=ManageCommands.LIST.value,
-                            description='Lists the users that can use a specific command',
-                            a_type=ApplicationCommandOptionType.BOOLEAN
                         )
                     ]
                 ),
@@ -129,11 +114,6 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
                             name=ManageCommands.SET.value,
                             description='will add channel if it is not in allowed channels',
                             a_type=ApplicationCommandOptionType.CHANNEL
-                        ),
-                        ApplicationCommandOption(
-                            name=ManageCommands.LIST.value,
-                            description='Lists the default channel where a specific command can be used',
-                            a_type=ApplicationCommandOptionType.BOOLEAN
                         )
                     ]
                 )
