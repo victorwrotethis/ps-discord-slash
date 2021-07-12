@@ -59,9 +59,9 @@ class ApplicationCommandOption:
             del state['required']
         else:
             if state['required']:
-                state['required'] = 'true'
+                state['required'] = 'True'
             else:
-                state['required'] = 'false'
+                state['required'] = 'False'
         if not state['choices']:
             del state['choices']
         if not state['options']:
