@@ -4,6 +4,7 @@ from unittest.mock import patch, MagicMock
 
 import jsonpickle
 
+from gecore.ps_discord_slash.commands.command_manager.command_manager_command import CommandManagerSlashCommand
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import create_command_submission
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
 
@@ -26,5 +27,7 @@ class CommandCreatorTest(unittest.TestCase):
         # previously submitted command
         self.assertEqual(guild_id, created_command_result['guild_id'])
 
-
-
+    def test_things(self):
+        result = CommandManagerSlashCommand.build()
+        printable = json.loads(jsonpickle.encode(result, unpicklable=False))
+        print(json.dumps(printable))

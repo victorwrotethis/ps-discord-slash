@@ -100,3 +100,12 @@ class ApplicationCommand:
         self.version = version
         self.guild_id = guild_id
         self.options = options
+
+    def __getstate__(self):
+        """"Checks if choices or options are filled in, otherwise omits them for JsonPickle"""
+        state = self.__dict__.copy()
+        del state['application_id']
+        del state['guild_id']
+        del state['version']
+        del state['id']
+        return state

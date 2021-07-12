@@ -41,16 +41,23 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
                 ApplicationCommandOption(
                     a_type=ApplicationCommandOptionType.SUB_COMMAND,
                     name=ManageCommands.GUILD_COMMAND.value,
-                    description='On removal, all permissions will be destroyed.',
-                    choices=[
-                        {'name': ManageCommands.ADD.value, 'value': ManageCommands.ADD.value},
-                        {'name': ManageCommands.REMOVE.value, 'value': ManageCommands.REMOVE.value}
-                    ]
+                    description='Add or Remove a command',
+                    options=[ApplicationCommandOption(
+                        name=ManageCommands.ACTION.value,
+                        description='On removal, all permissions will be destroyed.',
+                        a_type=ApplicationCommandOptionType.STRING,
+                        required=True,
+                        choices=[
+                            {'name': ManageCommands.ADD.value, 'value': ManageCommands.ADD.value},
+                            {'name': ManageCommands.REMOVE.value, 'value': ManageCommands.REMOVE.value}
+                        ]
+                    )]
                 ),
                 ApplicationCommandOption(
                     a_type=ApplicationCommandOptionType.SUB_COMMAND,
                     name=ManageCommands.APPROVED_ROLE.value,
                     description='Manage roles that can use a specific command',
+                    required=True,
                     options=[
                         ApplicationCommandOption(
                             name=ManageCommands.ADD.value,

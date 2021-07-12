@@ -5,6 +5,7 @@ from gecore.ps_discord_slash.models.commands import ApplicationCommand, Applicat
 class ManageCommands(SlashCommandName):
     COMMAND_MANAGER = 'command_manager'
     GUILD_COMMAND = 'guild_command'
+    ACTION = 'action'
     ADD = 'add'
     REMOVE = 'remove'
     SET = 'set'

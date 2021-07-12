@@ -17,7 +17,7 @@ class AppTest(unittest.TestCase):
         print(result)
 
     def test_command(self):
-        command = CommandManagerSlashCommand.build(1, 1, 1)
+        command = CommandManagerSlashCommand.build(1)
         submission = create_command_submission(command)
         result = json.loads(jsonpickle.encode(submission, unpicklable=False))
         print(json.dumps(result))
