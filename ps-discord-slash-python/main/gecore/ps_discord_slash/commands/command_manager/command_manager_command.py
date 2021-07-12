@@ -57,7 +57,6 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
                     a_type=ApplicationCommandOptionType.SUB_COMMAND,
                     name=ManageCommands.APPROVED_ROLE.value,
                     description='Manage roles that can use a specific command',
-                    required=True,
                     options=[
                         ApplicationCommandOption(
                             name=ManageCommands.ADD.value,
