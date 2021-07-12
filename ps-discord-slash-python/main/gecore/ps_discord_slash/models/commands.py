@@ -91,8 +91,8 @@ class ApplicationCommand:
     reflects: https://discord.com/developers/docs/interactions/slash-commands#applicationcommand
     """
 
-    def __init__(self, command_id: str, app_id: str, name: SlashCommandName, description: str,
-                 version: int, guild_id: int = None, options: List[ApplicationCommandOption] = None):
+    def __init__(self, app_id: str, name: SlashCommandName, description: str, command_id: str = None,
+                 version: int = None, guild_id: int = None, options: List[ApplicationCommandOption] = None):
         self.id = command_id
         self.application_id = app_id
         self.name = name

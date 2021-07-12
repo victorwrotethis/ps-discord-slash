@@ -49,7 +49,7 @@ class ISlashCommand:
         pass
 
     @staticmethod
-    def build(command_id: int, version: int, guild_id: int = None) -> ApplicationCommand:
+    def build(guild_id: int = None) -> ApplicationCommand:
         """Builds an existing command"""
         pass
 

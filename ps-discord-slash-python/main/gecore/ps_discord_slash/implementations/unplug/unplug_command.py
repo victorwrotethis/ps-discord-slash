@@ -31,13 +31,11 @@ class UnplugSlashCommand(IGlobalSlashCommand):
         return StartingPerms.EVERYONE
 
     @staticmethod
-    def build(command_id: int, version: int, guild_id: int = None) -> ApplicationCommand:
+    def build(guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
-            command_id=str(command_id),
             app_id=str(GenericConfig.APP_ID),
             name=UnplugCommand.UNPLUG,
             description='Turn off',
-            version=version,
             options=[ApplicationCommandOption(
                 a_type=ApplicationCommandOptionType.STRING,
                 name='system',

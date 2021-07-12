@@ -15,8 +15,6 @@ def load_guild_commands() -> List[GuildSlashCommands]:
         response_channel=JaegerEventChannel.SLASH_SPAM,
         allowed_roles=[role.value for role in JaegerEventRoles]
     )
-    sb_command_id = 828139760362192897
-    sb_command_guild_version = 828139760362192898
-    search_base_id = SearchBaseSlashCommand.build(sb_command_id, sb_command_guild_version, guild_perms.guild)
+    search_base_id = SearchBaseSlashCommand.build(guild_perms.guild)
     sb_guild_command = SlashCommand(search_base_id, guild_perms)
     return [GuildSlashCommands(search_base_id.guild_id, [sb_guild_command])]

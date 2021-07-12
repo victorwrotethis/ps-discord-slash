@@ -27,13 +27,11 @@ class SearchBaseSlashCommand(ISlashCommand):
         return SlashCommandType.GUILD
 
     @staticmethod
-    def build(command_id: int, version: int, guild_id: int = None) -> ApplicationCommand:
+    def build(guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
-            command_id=str(command_id),
             app_id=str(GenericConfig.APP_ID),
             name=OvOSlashCommand.SEARCH_BASE_ID,
             description='Search a facility Id [v2]',
-            version=version,
             guild_id=guild_id,
             options=[ApplicationCommandOption(
                 a_type=ApplicationCommandOptionType.STRING,

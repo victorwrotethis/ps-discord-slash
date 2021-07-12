@@ -20,13 +20,11 @@ class ReservationSlashCommand(ISlashCommand):
         return StartingPerms.ADMINISTRATOR_ONLY
 
     @staticmethod
-    def build(command_id: int, guild_id: int, version: int) -> ApplicationCommand:
+    def build(guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
-            command_id=str(command_id),
             app_id=str(GenericConfig.APP_ID),
             name=OvOSlashCommand.RESERVATION,
             description='Reserve a base [v2]',
-            version=version,
             guild_id=guild_id,
             options=[ApplicationCommandOption(
                 a_type=ApplicationCommandOptionType.STRING,

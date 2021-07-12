@@ -32,14 +32,11 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
         return StartingPerms.ADMINISTRATOR_ONLY
 
     @staticmethod
-    def build(command_id: int, version: int, guild_id: int = None) -> ApplicationCommand:
+    def build(guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
-            command_id=str(command_id),
             app_id=str(GenericConfig.APP_ID),
             name=ManageCommands.COMMAND_MANAGER,
             description='Manage a particular command',
-            version=version,
-            guild_id=guild_id,
             options=[
                 ApplicationCommandOption(
                     a_type=ApplicationCommandOptionType.SUB_COMMAND,
