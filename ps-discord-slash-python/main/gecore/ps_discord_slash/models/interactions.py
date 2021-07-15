@@ -16,6 +16,8 @@ class InteractionResponseType:
     CHANNEL_MESSAGE = 3  # Deprecated
     CHANNEL_MESSAGE_WITH_SOURCE = 4
     DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE = 5
+    DEFERRED_UPDATE_MESSAGE = 6
+    UPDATE_MESSAGE = 7
 
 
 # https://discord.com/developers/docs/interactions/slash-commands#interaction-applicationcommandinteractiondataoption
@@ -48,12 +50,22 @@ class Interaction:
 
 # https://discord.com/developers/docs/interactions/slash-commands#interaction-interactionapplicationcommandcallbackdata
 class InteractionResponseData:
-    def __init__(self, content, flags: DiscordFlags, embeds=None):
+    def __init__(self, content, flags: DiscordFlags, embeds: [] = None, components: [] = None):
         self.tts = False
         self.content = content
         self.flags = flags
         self.embeds = embeds
         self.allowed_mentions = []
+        self.components = components
+
+    def __getstate__(self):
+        """"Checks if choices or options are filled in, otherwise omits them for JsonPickle"""
+        state = self.__dict__.copy()
+        if not state['embeds']:
+            del state['embeds']
+        if not state['components']:
+            del state['components']
+        return state
 
 
 # https://discord.com/developers/docs/interactions/slash-commands#interaction-response
