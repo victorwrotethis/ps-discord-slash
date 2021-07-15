@@ -1,4 +1,4 @@
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
+from gecore.ps_discord_slash.commands.command_interface import InteractionCommand
 from gecore.ps_discord_slash.commands.models.local_commands import CommandSearchResult, GuildSlashCommands
 from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage
 from gecore.ps_discord_slash.processing.global_command_service import find_global_command
@@ -6,7 +6,7 @@ from gecore.ps_discord_slash.processing.guild_command_service import find_guild_
     add_global_to_guild
 
 
-def check_for_guild_and_command(slash_command: ISlashCommand, incoming_guild_id: int) -> CommandSearchResult:
+def check_for_guild_and_command(slash_command: InteractionCommand, incoming_guild_id: int) -> CommandSearchResult:
     """Checks if it can find the guild commands. On the absence of the guild in system, it will add it."""
     try:
         guild_and_its_commands = find_guild_commands(incoming_guild_id)
@@ -18,7 +18,7 @@ def check_for_guild_and_command(slash_command: ISlashCommand, incoming_guild_id:
         return CommandSearchResult(has_been_found=False, error_response=err)
 
 
-def check_for_command_in_guild(slash_command: ISlashCommand, guild_and_its_commands: GuildSlashCommands) \
+def check_for_command_in_guild(slash_command: InteractionCommand, guild_and_its_commands: GuildSlashCommands) \
         -> CommandSearchResult:
     """"Checks if a command is in a guild, adds it if absent."""
     try:
@@ -31,7 +31,7 @@ def check_for_command_in_guild(slash_command: ISlashCommand, guild_and_its_comma
         return CommandSearchResult(has_been_found=False, error_response=err)
 
 
-def check_for_command_in_global(slash_command: ISlashCommand) -> CommandSearchResult:
+def check_for_command_in_global(slash_command: InteractionCommand) -> CommandSearchResult:
     try:
         global_command = find_global_command(slash_command)
         return CommandSearchResult(has_been_found=True, found_command=global_command)

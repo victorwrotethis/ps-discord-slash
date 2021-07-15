@@ -3,13 +3,14 @@ from typing import List
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 
 
-# https://discord.com/developers/docs/interactions/slash-commands#interaction-interactiontype
+# https://discord.com/developers/docs/interactions/slash-commands#interaction-object-interaction-request-type
 class InteractionType:
     PING = 1
     APPLICATION_COMMAND = 2
+    MESSAGE_COMPONENT = 3
 
 
-# https://discord.com/developers/docs/interactions/slash-commands#interaction-interactionresponsetype
+# https://discord.com/developers/docs/interactions/slash-commands#interaction-response-object-interaction-callback-type
 class InteractionResponseType:
     PONG = 1
     ACKNOWLEDGE = 2  # Deprecated

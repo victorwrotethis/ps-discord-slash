@@ -1,7 +1,8 @@
-from gecore.ps_discord_slash.commands.command_interface import SlashCommandType, IGlobalSlashCommand, \
+from gecore.ps_discord_slash.commands.command_interface import InteractionCommandType, IGlobalInteractionCommand, \
     StartingPerms
 from gecore.ps_discord_slash.commands.command_manager.command_manager_processor import process_command_manager
-from gecore.ps_discord_slash.commands.command_manager.manage_commands import ManageCommands
+from gecore.ps_discord_slash.commands.command_manager.manage_commands import ManageCommands, ManageCommandAbbreviations
+from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 from gecore.ps_discord_slash.commands.models.available_commands import AvailableCommands
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
@@ -9,7 +10,7 @@ from gecore.ps_discord_slash.models.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.interactions import InteractionResponse
 
 
-class CommandManagerSlashCommand(IGlobalSlashCommand):
+class CommandManagerInteractionCommand(IGlobalInteractionCommand):
 
     def __init__(self, available_commands: AvailableCommands):
         self.available_commands = available_commands
@@ -20,8 +21,8 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
         return False
 
     @staticmethod
-    def command_type() -> SlashCommandType:
-        return SlashCommandType.GLOBAL
+    def command_type() -> InteractionCommandType:
+        return InteractionCommandType.GLOBAL
 
     @staticmethod
     def identify() -> ManageCommands:
@@ -30,6 +31,14 @@ class CommandManagerSlashCommand(IGlobalSlashCommand):
     @staticmethod
     def starting_perms() -> StartingPerms:
         return StartingPerms.ADMINISTRATOR_ONLY
+
+    @staticmethod
+    def supports_components() -> bool:
+        return True
+
+    @staticmethod
+    def component_identify() -> InteractionCommandName:
+        return ManageCommandAbbreviations.COMMAND_MANAGER
 
     @staticmethod
     def build(guild_id: int = None) -> ApplicationCommand:

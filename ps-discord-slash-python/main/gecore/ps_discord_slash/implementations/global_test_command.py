@@ -1,6 +1,6 @@
-from gecore.ps_discord_slash.commands.command_interface import IGlobalSlashCommand, SlashCommandType, StartingPerms
+from gecore.ps_discord_slash.commands.command_interface import IGlobalInteractionCommand, InteractionCommandType, StartingPerms
 from gecore.ps_discord_slash.implementations.bases.models.base_response import create_base_embeds
-from gecore.ps_discord_slash.implementations.created_commands import OvOSlashCommand
+from gecore.ps_discord_slash.implementations.created_commands import OvOInteractionCommand
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
@@ -9,15 +9,15 @@ from gecore.ps_discord_slash.models.interactions import InteractionResponse, Emb
     InteractionResponseType
 
 
-class GlobalPublicTestCommand(IGlobalSlashCommand):
+class GlobalPublicTestCommand(IGlobalInteractionCommand):
 
     @staticmethod
-    def command_type() -> SlashCommandType:
-        return SlashCommandType.GLOBAL
+    def command_type() -> InteractionCommandType:
+        return InteractionCommandType.GLOBAL
 
     @staticmethod
-    def identify() -> OvOSlashCommand:
-        return OvOSlashCommand.TEST_GLOBAL
+    def identify() -> OvOInteractionCommand:
+        return OvOInteractionCommand.TEST_GLOBAL
 
     @staticmethod
     def starting_perms() -> StartingPerms:
@@ -31,7 +31,7 @@ class GlobalPublicTestCommand(IGlobalSlashCommand):
     def build(guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
             app_id=str(GenericConfig.APP_ID),
-            name=OvOSlashCommand.RESERVATION,
+            name=OvOInteractionCommand.RESERVATION,
             description='Test this global command',
             guild_id=guild_id,
             options=[ApplicationCommandOption(

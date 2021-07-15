@@ -1,6 +1,6 @@
 from typing import List
 
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
+from gecore.ps_discord_slash.commands.command_interface import InteractionCommand
 from gecore.ps_discord_slash.commands.models.local_commands import GuildSlashCommands, SlashCommand
 from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage
 from gecore.ps_discord_slash.implementations.guild_command_list_manager import GuildCommandManager
@@ -32,13 +32,13 @@ def add_global_command_to_guild_list(guild_commands: GuildSlashCommands, global_
     return guild_global_command
 
 
-def add_global_to_guild(slash_command: ISlashCommand, guild_and_its_commands: GuildSlashCommands) -> SlashCommand:
+def add_global_to_guild(slash_command: InteractionCommand, guild_and_its_commands: GuildSlashCommands) -> SlashCommand:
     """Adds global command to guild"""
     global_command = find_global_command(slash_command)
     return add_global_command_to_guild_list(guild_and_its_commands, global_command)
 
 
-def create_guild_and_add_global(slash_command: ISlashCommand, incoming_guild_id: int) -> SlashCommand:
+def create_guild_and_add_global(slash_command: InteractionCommand, incoming_guild_id: int) -> SlashCommand:
     """"Creates instance of the guild and adds the global command"""
     guild_commands = create_guild_list(incoming_guild_id)
     global_command = find_global_command(slash_command)

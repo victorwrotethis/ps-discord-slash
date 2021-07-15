@@ -1,19 +1,19 @@
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand, SlashCommandType, StartingPerms
-from gecore.ps_discord_slash.implementations.created_commands import OvOSlashCommand
+from gecore.ps_discord_slash.commands.command_interface import InteractionCommand, InteractionCommandType, StartingPerms
+from gecore.ps_discord_slash.implementations.created_commands import OvOInteractionCommand
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
 
 
-class ReservationSlashCommand(ISlashCommand):
+class ReservationSlashCommand(InteractionCommand):
 
     @staticmethod
-    def command_type() -> SlashCommandType:
-        return SlashCommandType.GUILD
+    def command_type() -> InteractionCommandType:
+        return InteractionCommandType.GUILD
 
     @staticmethod
-    def identify() -> OvOSlashCommand:
-        return OvOSlashCommand.RESERVATION
+    def identify() -> OvOInteractionCommand:
+        return OvOInteractionCommand.RESERVATION
 
     @staticmethod
     def starting_perms() -> StartingPerms:
@@ -23,7 +23,7 @@ class ReservationSlashCommand(ISlashCommand):
     def build(guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
             app_id=str(GenericConfig.APP_ID),
-            name=OvOSlashCommand.RESERVATION,
+            name=OvOInteractionCommand.RESERVATION,
             description='Reserve a base [v2]',
             guild_id=guild_id,
             options=[ApplicationCommandOption(

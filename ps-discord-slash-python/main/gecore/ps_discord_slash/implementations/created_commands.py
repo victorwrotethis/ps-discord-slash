@@ -1,7 +1,7 @@
-from gecore.ps_discord_slash.commands.command_name_interface import SlashCommandName
+from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 
 
-class OvOSlashCommand(SlashCommandName):
+class OvOInteractionCommand(InteractionCommandName):
     SEARCH_BASE_ID = 'searchbaseid'
     REQUEST_ACCOUNT = 'request_account'
     REQUEST_ACCOUNTS = 'request_accounts'
@@ -10,4 +10,4 @@ class OvOSlashCommand(SlashCommandName):
 
     @staticmethod
     def provide_members():
-        return OvOSlashCommand.__members__.values()
+        return OvOInteractionCommand.__members__.values()

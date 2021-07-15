@@ -1,8 +1,8 @@
 from enum import Enum
 
 
-class SlashCommandName(Enum):
-    """Enforces enum usage for slash command names for processing"""
+class InteractionCommandName(Enum):
+    """Enforces enum usage for interaction command names for processing"""
 
     @staticmethod
     def provide_members():

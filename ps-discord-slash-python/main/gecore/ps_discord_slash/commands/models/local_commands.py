@@ -1,6 +1,6 @@
 from typing import List
 
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
+from gecore.ps_discord_slash.commands.command_interface import InteractionCommand
 from gecore.ps_discord_slash.commands.models.local_permissions import CommandPermissions
 from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage
 from gecore.ps_discord_slash.models.commands import ApplicationCommand
@@ -21,7 +21,7 @@ class SlashCommands:
         self.commands = commands
         self.missing_response = missing_response
 
-    def find_command(self, incoming_command: ISlashCommand) -> SlashCommand:
+    def find_command(self, incoming_command: InteractionCommand) -> SlashCommand:
         for slash_command in self.commands:
             if slash_command.command.name == incoming_command.identify():
                 return slash_command

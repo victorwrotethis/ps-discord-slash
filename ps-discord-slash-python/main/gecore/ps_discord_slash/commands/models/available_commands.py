@@ -1,16 +1,16 @@
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
+from gecore.ps_discord_slash.commands.command_interface import InteractionCommand
 from gecore.ps_discord_slash.exception.exceptions import CommandExceptionMessage, CommandException
 
 
 class AvailableCommands:
-    command_list = [ISlashCommand]
+    command_list = [InteractionCommand]
 
-    def __init__(self, command_list: [ISlashCommand]):
+    def __init__(self, command_list: [InteractionCommand]):
         """"Creates the command list to make your own created commands available to be recognised and used"""
         verify_if_command_instances(command_list)
         self.command_list = command_list
 
-    def add_command(self, command: ISlashCommand):
+    def add_command(self, command: InteractionCommand):
         """
         Adds any command to the pool to be available to be recognised and used.
         Mainly used to add the CommandManager Command afterwards.
@@ -18,19 +18,24 @@ class AvailableCommands:
         verify_if_command_instance(command)
         self.command_list.append(command)
 
-    def retrieve_command(self, incoming_command: str) -> ISlashCommand:
+    def retrieve_command(self, incoming_command: str) -> InteractionCommand:
         for slash_command in self.command_list:
             if slash_command.identify().value == incoming_command:
                 return slash_command
         raise CommandException(CommandExceptionMessage.CommandNotFound)
 
+    def retrieve_component_command(self, incoming_custom_id: str) -> InteractionCommand:
 
-def verify_if_command_instances(commands: [ISlashCommand]):
+        # todo grab abbreviation and search
+        pass
+
+
+def verify_if_command_instances(commands: [InteractionCommand]):
     for command in commands:
-        if not isinstance(command, ISlashCommand):
+        if not isinstance(command, InteractionCommand):
             raise CommandException(CommandExceptionMessage.CommandNotInstanced)
 
 
-def verify_if_command_instance(command: ISlashCommand):
-    if not isinstance(command, ISlashCommand):
+def verify_if_command_instance(command: InteractionCommand):
+    if not isinstance(command, InteractionCommand):
         raise CommandException(CommandExceptionMessage.CommandNotInstanced)

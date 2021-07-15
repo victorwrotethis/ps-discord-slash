@@ -1,4 +1,4 @@
-from gecore.ps_discord_slash.commands.command_interface import ISlashCommand
+from gecore.ps_discord_slash.commands.command_interface import InteractionCommand
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import find_management_command, ManageCommands, \
     ManageCommandAbbreviations
 from gecore.ps_discord_slash.commands.models.available_commands import AvailableCommands
@@ -19,7 +19,7 @@ def process_command_manager(available_commands: AvailableCommands, command_body:
         return create_button_components(available_commands.command_list, prep_custom_id)
 
 
-def create_button_components(available_commands: [ISlashCommand], prep_custom_id: str) -> InteractionResponse:
+def create_button_components(available_commands: [InteractionCommand], prep_custom_id: str) -> InteractionResponse:
     button_components = []
     for command in available_commands:
         command_name = command.identify().value

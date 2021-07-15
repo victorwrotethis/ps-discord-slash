@@ -1,10 +1,10 @@
 from enum import Enum
 
-from gecore.ps_discord_slash.commands.command_name_interface import SlashCommandName
+from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandSubmission
 
 
-class ManageCommands(SlashCommandName):
+class ManageCommands(InteractionCommandName):
     COMMAND_MANAGER = 'command_manager'
     GUILD_COMMAND = 'guild_command'
     DEFAULT_CHANNEL = 'default_channel'
@@ -18,7 +18,7 @@ class ManageCommands(SlashCommandName):
     LIST = 'list'
 
 
-class ManageCommandAbbreviations(Enum):
+class ManageCommandAbbreviations(InteractionCommandName):
     COMMAND_MANAGER = 'c_m'
     GUILD_COMMAND = 'g_c'
     DEFAULT_CHANNEL = 'd_c'

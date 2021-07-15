@@ -1,5 +1,5 @@
-from gecore.ps_discord_slash.commands.command_interface import IGlobalSlashCommand, SlashCommandType, StartingPerms
-from gecore.ps_discord_slash.commands.command_name_interface import SlashCommandName
+from gecore.ps_discord_slash.commands.command_interface import IGlobalInteractionCommand, InteractionCommandType, StartingPerms
+from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
@@ -8,22 +8,22 @@ from gecore.ps_discord_slash.models.interactions import InteractionResponse, Int
     InteractionResponseType
 
 
-class UnplugCommand(SlashCommandName):
+class UnplugCommand(InteractionCommandName):
     UNPLUG = 'unplug'
 
 
-class UnplugSlashCommand(IGlobalSlashCommand):
+class UnplugInteractionCommand(IGlobalInteractionCommand):
 
     @staticmethod
     def allow_dm_usage() -> bool:
         return False
 
     @staticmethod
-    def command_type() -> SlashCommandType:
-        return SlashCommandType.GLOBAL
+    def command_type() -> InteractionCommandType:
+        return InteractionCommandType.GLOBAL
 
     @staticmethod
-    def identify() -> SlashCommandName:
+    def identify() -> InteractionCommandName:
         return UnplugCommand.UNPLUG
 
     @staticmethod
