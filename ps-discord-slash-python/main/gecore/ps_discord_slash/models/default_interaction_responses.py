@@ -28,6 +28,12 @@ def not_configured_response() -> InteractionResponseData:
         flags=DiscordFlags.HIDDEN)
 
 
+def not_properly_executed_response() -> InteractionResponseData:
+    return InteractionResponseData(
+        content='This command dit not properly execute',
+        flags=DiscordFlags.HIDDEN)
+
+
 def command_error_response(message: CommandExceptionMessage) -> InteractionResponseData:
     return InteractionResponseData(
         content=f'{message.value}',

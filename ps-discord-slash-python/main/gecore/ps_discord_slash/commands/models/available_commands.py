@@ -25,9 +25,17 @@ class AvailableCommands:
         raise CommandException(CommandExceptionMessage.CommandNotFound)
 
     def retrieve_component_command(self, incoming_custom_id: str) -> InteractionCommand:
+        split_id = split_custom_id(incoming_custom_id)
+        for slash_command in self.command_list:
+            if slash_command.supports_components():
+                if slash_command.component_identify().value == split_id:
+                    return slash_command
+        raise CommandException(CommandExceptionMessage.CommandNotFound)
 
-        # todo grab abbreviation and search
-        pass
+
+def split_custom_id(incoming_custom_id: str):
+    split_id = incoming_custom_id.split('|')
+    return split_id[0]
 
 
 def verify_if_command_instances(commands: [InteractionCommand]):
