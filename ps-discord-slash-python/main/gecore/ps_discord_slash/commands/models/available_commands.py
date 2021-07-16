@@ -40,8 +40,7 @@ def split_custom_id(incoming_custom_id: str):
 
 def verify_if_command_instances(commands: [InteractionCommand]):
     for command in commands:
-        if not isinstance(command, InteractionCommand):
-            raise CommandException(CommandExceptionMessage.CommandNotInstanced)
+        verify_if_command_instance(command)
 
 
 def verify_if_command_instance(command: InteractionCommand):
