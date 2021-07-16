@@ -84,7 +84,13 @@ def execute_if_permitted(command_body: {}, interaction_command: InteractionComma
 def perform_execution(command_body: {}, interaction_command: InteractionCommand) -> InteractionResponse:
     """"Executes a interaction command. Splits between slash commands and components"""
     interaction_type = command_body['type']
-    if interaction_type is InteractionType.APPLICATION_COMMAND:
-        return interaction_command.execute(command_body)
-    elif interaction_type is InteractionType.MESSAGE_COMPONENT:
-        return interaction_command.execute_component(command_body)
+    try:
+        if interaction_type is InteractionType.APPLICATION_COMMAND:
+            return interaction_command.execute(command_body)
+        elif interaction_type is InteractionType.MESSAGE_COMPONENT:
+            return interaction_command.execute_component(command_body)
+    except CommandException as cer:
+        return InteractionResponse(
+            InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            command_error_response(cer.message)
+        )

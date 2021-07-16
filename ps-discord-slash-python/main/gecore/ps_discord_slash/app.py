@@ -1,8 +1,7 @@
 import json
 
 from gecore.ps_discord_slash.implementations.load_available_commands import check_if_commands_loaded
-from gecore.ps_discord_slash.models.default_interaction_responses import not_configured_response, \
-    not_properly_executed_response
+from gecore.ps_discord_slash.models.default_interaction_responses import not_properly_executed_response
 from gecore.ps_discord_slash.models.interactions import InteractionType, InteractionResponse, InteractionResponseType
 from gecore.ps_discord_slash.models.response_models import error_response, pong_response, generic_response
 from gecore.ps_discord_slash.processing.interaction_processor import InteractionProcessor

@@ -1,5 +1,3 @@
-from enum import Enum
-
 from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandSubmission
 
