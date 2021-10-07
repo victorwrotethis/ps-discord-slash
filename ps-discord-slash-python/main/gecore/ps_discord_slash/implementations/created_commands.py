@@ -6,6 +6,8 @@ class OvOInteractionCommand(InteractionCommandName):
     REQUEST_ACCOUNT = 'request_account'
     REQUEST_ACCOUNTS = 'request_accounts'
     RESERVATION = 'reservation'
+    RESERVE = 'reserve'
+    RESERVE_6V6 = '6v6base'
     TEST_GLOBAL = 'globaltest'
 
     @staticmethod

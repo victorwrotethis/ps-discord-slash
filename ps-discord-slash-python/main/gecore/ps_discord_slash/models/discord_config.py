@@ -5,6 +5,7 @@ import os
 class GenericConfig:
     APP_ID = 789525379047358464  # os.environ.get('application_id')
     JAEGER_EVENTS_GUILD = 207168033918025729  # os.environ.get('jaeger_events_guild')
+    TEST_GUILD = 621502053373706241
     DB_URL = 'http://localhost:8000'  # os.environ.get('db_url')
 
     def __getstate__(self):

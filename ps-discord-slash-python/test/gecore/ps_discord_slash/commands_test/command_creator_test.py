@@ -7,6 +7,8 @@ import jsonpickle
 from gecore.ps_discord_slash.commands.command_manager.command_manager_command import CommandManagerInteractionCommand
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import create_command_submission
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
+from gecore.ps_discord_slash.implementations.pretty_time.time_prettifier_command import PrettyTimeInteractionCommand
+from gecore.ps_discord_slash.implementations.unplug.test_date_command import TestDateInteractionCommand
 
 
 class CommandCreatorTest(unittest.TestCase):
@@ -30,4 +32,8 @@ class CommandCreatorTest(unittest.TestCase):
     def test_things(self):
         result = CommandManagerInteractionCommand.build()
         printable = json.loads(jsonpickle.encode(result, unpicklable=False))
+        print(json.dumps(printable))
+
+        result_two = TestDateInteractionCommand.build(621502053373706241)
+        printable = json.loads(jsonpickle.encode(result_two, unpicklable=False))
         print(json.dumps(printable))

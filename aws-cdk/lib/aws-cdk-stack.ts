@@ -4,7 +4,6 @@ import { Alias, Runtime, Version } from '@aws-cdk/aws-lambda';
 import { PythonFunction } from '@aws-cdk/aws-lambda-python';
 import * as cdk from '@aws-cdk/core';
 import { RemovalPolicy } from '@aws-cdk/core';
-import { version } from 'process';
 import { Config } from './config';
 
 export class AwsCdkStack extends cdk.Stack {

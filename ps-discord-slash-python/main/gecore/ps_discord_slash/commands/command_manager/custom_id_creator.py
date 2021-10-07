@@ -9,7 +9,8 @@ class ButtonSupportContent:
         self.custom_id = custom_id
         self.content = content
 
-
+# todo add other alternatives. (default channel and adding them in the first place)
+#  Also add a flow when the commands haven't been added yet.
 def create_button_support_content(command_body: {}) -> ButtonSupportContent:
     command_data = command_body['data']
     sub_command_data = command_data['options'][0]

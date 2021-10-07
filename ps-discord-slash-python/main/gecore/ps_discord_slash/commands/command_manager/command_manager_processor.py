@@ -10,4 +10,6 @@ def process_command_manager(available_commands: AvailableCommands, command_body:
     prep_custom_id = create_button_support_content(command_body)
     return create_button_components(available_commands.command_list, prep_custom_id)
 
-
+# todo additionally, it needs to split between incoming components and the original request.
+#  It does currently recognise it, because we did at the flow it'll check the first bit for commands.
+#  However, it will currently break because it'll try and perform a flow it can't execute.
