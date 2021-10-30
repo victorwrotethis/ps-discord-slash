@@ -37,6 +37,21 @@ def check_if_before_pst_midnight(timestamp: int) -> bool:
         return False
 
 
+def can_move_5days_forward(starting_day: int) -> bool:
+    ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
+    twenty_days_end = ref_date + timedelta(days=19)
+    return ref_date.month == twenty_days_end.month
+
+
+def move_5days_backward(starting_day: int) -> int:
+    ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
+    minus_5_days = ref_date - timedelta(days=5)
+    if ref_date.month == minus_5_days.month:
+        return int(minus_5_days.timestamp())
+    else:
+        return int(ref_date.replace(day=1).timestamp())
+
+
 def get_twenty_days(starting_day: int) -> dict:
     day_list: dict = {}
     ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)

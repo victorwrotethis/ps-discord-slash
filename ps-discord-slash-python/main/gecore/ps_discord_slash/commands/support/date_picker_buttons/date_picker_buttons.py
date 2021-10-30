@@ -1,9 +1,12 @@
+import datetime
 from decimal import Decimal
 from enum import Enum
 
 from gecore.ps_discord_slash.models.components import ActionRow, ComponentType, Button, ButtonStyle
 from gecore.ps_discord_slash.tools.time.time_service import get_earlier_day, get_utc_day_from_timestamp, \
-    check_if_before_pst_midnight, get_twenty_days, get_month_from_timestamp, get_current_time
+    check_if_before_pst_midnight, get_twenty_days, get_month_from_timestamp, get_current_time, move_5days_backward, \
+    can_move_5days_forward
+
 
 # todo create from start of a date buttons up to a certain area.
 #  Limit it to a month I guess?
@@ -85,7 +88,6 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
     Creates navigation buttons based on the reference time.
     Will disable backward buttons if disable_old is true and the reference time is before the current time.
     """
-    # todo disallow +5 days if it's unlikely the next 5 days are possible as it's the end of the month
     month = get_month_from_timestamp(reference_time)
     current_time = get_current_time()
     buttons = [
@@ -101,7 +103,7 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
             custom_id=f'{command_id}|{DatePickerButtons.PREVIOUS_5DAYS}|{reference_time}',
             label='-5D',
             style=ButtonStyle.Success,
-            disabled=True if current_time > reference_time and disable_old is True else False
+            disabled=check_if_5days_backward_is_allowed(current_time, reference_time, disable_old)
         ),
         Button(
             component_type=ComponentType.Button,
@@ -114,7 +116,8 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
             component_type=ComponentType.Button,
             custom_id=f'{command_id}|{DatePickerButtons.NEXT_5DAYS}|{reference_time}',
             label='+5D',
-            style=ButtonStyle.Success
+            style=ButtonStyle.Success,
+            disabled=False if can_move_5days_forward(current_time) else True
         ),
         Button(
             component_type=ComponentType.Button,
@@ -127,3 +130,12 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
         component_type=ComponentType.ActionRow,
         components=buttons
     )
+
+
+def check_if_5days_backward_is_allowed(current_time: int, reference_time: int, disable_old: bool) -> bool:
+    if disable_old is True:
+        return current_time > reference_time
+    else:
+        current_day = get_utc_day_from_timestamp(current_time)
+        five_days_check = move_5days_backward(current_time)
+        return current_day != five_days_check
