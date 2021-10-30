@@ -27,7 +27,7 @@ def create_button_components(available_commands: [InteractionCommand], support_c
         response_type=InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         response_data=InteractionResponseData(
             content=support_content.content,
-            flags=DiscordFlags.HIDDEN,
+            flags=DiscordFlags.NONE,
             components=[action_row_component]
         )
     )

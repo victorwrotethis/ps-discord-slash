@@ -43,6 +43,7 @@ class InteractionProcessor:
 
 
 def segment_and_execute(command_body: {}, interaction_command: InteractionCommand) -> InteractionResponse:
+    print('executing command')
     """
 
     """
@@ -61,14 +62,17 @@ def segment_and_execute(command_body: {}, interaction_command: InteractionComman
 
 def execute_if_permitted(command_body: {}, interaction_command: InteractionCommand,
                          command_search_result: CommandSearchResult) -> InteractionResponse:
+    print('command found, checking perms now')
     if command_search_result.has_been_found:
         guild_command = command_search_result.found_command
         permission_check_result = check_if_permitted(command_body, guild_command)
+        print(f'ccommand being approved to run is {permission_check_result.approved}')
         if permission_check_result.approved:
             if permission_check_result.has_set_perms:
                 return perform_execution(command_body, interaction_command)
             else:
                 if interaction_command.starting_perms().EVERYONE:
+                    print(f'Everyone is allowed to run this command')
                     return perform_execution(command_body, interaction_command)
         else:
             return InteractionResponse(

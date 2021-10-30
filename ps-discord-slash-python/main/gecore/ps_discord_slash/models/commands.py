@@ -15,6 +15,7 @@ class ApplicationCommandOptionType(IntEnum):
     CHANNEL = 7
     ROLE = 8
     MENTIONABLE = 9
+    NUMBER = 10
 
     def __getstate__(self):
         """Allows JsonPickle just to retrieve the value"""
