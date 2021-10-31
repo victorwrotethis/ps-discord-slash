@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 import pytz
+from dateutil.relativedelta import relativedelta
 
 from gecore.ps_discord_slash.tools.time.time_variants import grab_month_variant_by_number, MonthVariant
 
@@ -35,6 +36,30 @@ def check_if_before_pst_midnight(timestamp: int) -> bool:
         return True
     else:
         return False
+
+
+def move_to_next_month(starting_day: int) -> int:
+    ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
+    if ref_date.month == 12:
+        year = ref_date.year + 1
+        jan_first = datetime.fromisocalendar(day=1, year=year, week=1)
+        return int(jan_first.timestamp())
+    else:
+        next_month = ref_date + relativedelta(months=+1)
+        next_month = next_month.replace(day=1)
+        return int(next_month.timestamp())
+
+
+def move_back_a_month(starting_day: int) -> int:
+    ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
+    if ref_date.month == 12:
+        previous_month = ref_date + relativedelta(months=-1)
+        dec_first = previous_month.replace(day=1)
+        return int(dec_first.timestamp())
+    else:
+        previous_month = ref_date + relativedelta(months=-1)
+        previous_month = previous_month.replace(day=1)
+        return int(previous_month.timestamp())
 
 
 def can_move_5days_forward(starting_day: int) -> bool:

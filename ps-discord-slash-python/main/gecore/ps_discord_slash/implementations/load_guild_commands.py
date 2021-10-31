@@ -3,7 +3,7 @@ from typing import List
 from gecore.ps_discord_slash.commands.models.local_commands import GuildSlashCommands, SlashCommand
 from gecore.ps_discord_slash.commands.models.local_permissions import CommandPermissions
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
-from gecore.ps_discord_slash.implementations.unplug.test_date_command import TestDateInteractionCommand
+from gecore.ps_discord_slash.implementations.pretty_time.test_date_command import TestDateInteractionCommand
 from gecore.ps_discord_slash.models.discord_config import GenericConfig, JaegerEventChannel, JaegerEventRoles
 
 
