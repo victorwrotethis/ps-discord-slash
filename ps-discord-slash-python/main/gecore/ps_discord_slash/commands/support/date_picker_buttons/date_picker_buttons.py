@@ -1,17 +1,10 @@
-import datetime
 from decimal import Decimal
 from enum import Enum
 
 from gecore.ps_discord_slash.models.components import ActionRow, ComponentType, Button, ButtonStyle
 from gecore.ps_discord_slash.tools.time.time_service import get_earlier_day, get_utc_day_from_timestamp, \
-    check_if_before_pst_midnight, get_twenty_days, get_month_from_timestamp, get_current_time, move_5days_backward, \
-    can_move_5days_forward
-
-
-# todo create from start of a date buttons up to a certain area.
-#  Limit it to a month I guess?
-#  Disable -5d or +5d if max has been reached?
-#  errr what are we doing with years?
+    check_if_before_pst_midnight, get_twenty_days, get_month_from_timestamp, get_current_time, can_move_5days_forward, \
+    check_if_5days_backward_is_prohibited
 
 
 class DatePickerButtons(str, Enum):
@@ -22,14 +15,14 @@ class DatePickerButtons(str, Enum):
     SPECIFIC_DAY = 'specificDay'
 
 
-def create_date_buttons_from(command_id: str, start_date: int, disable_old: bool = False):
+def create_date_buttons_from(command_id: str, start_date: int, disable_old: bool = False, skip_pst_check: bool = False):
     """
     command_id: The command id that is required to link these buttons to a command
     start_date: The timestamp date used as as starting point to create buttons from for 20 days.
     disable_old: Bool Disables navigation buttons to go before current date.
     """
 
-    if check_if_before_pst_midnight(start_date) is True:
+    if skip_pst_check is False and check_if_before_pst_midnight(start_date) is True:
         earlier_time = get_earlier_day(start_date, 1)
         reference_time = get_utc_day_from_timestamp(earlier_time)
     else:
@@ -64,15 +57,12 @@ def create_date_buttons_from(command_id: str, start_date: int, disable_old: bool
             row_range = amount_of_additional_rows
         count = 0
         for row in range(int(row_range)):
-            action_rows.append(date_button_components[count:count+5])
+            row = create_action_row_for(date_button_components[count:count+5])
+            action_rows.append(row)
             count = count + 5
         if exact_additional > 0:
-            action_rows.append(date_button_components[count:count + int(exact_additional)])
-
-    # todo See if we want to split up this method more.
-    #  Actually use this is in testdate and flip the day back/forth?
-    #  Move towards fixing pretty_time so we can get some feedback.
-    #  We pretty much did the flow inside here. now we just need to process the navigation buttons.
+            row = create_action_row_for(date_button_components[count:count + int(exact_additional)])
+            action_rows.append(row)
     return action_rows
 
 
@@ -103,7 +93,7 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
             custom_id=f'{command_id}|{DatePickerButtons.PREVIOUS_5DAYS}|{reference_time}',
             label='-5D',
             style=ButtonStyle.Success,
-            disabled=check_if_5days_backward_is_allowed(current_time, reference_time, disable_old)
+            disabled=check_if_5days_backward_is_prohibited(current_time, reference_time, disable_old)
         ),
         Button(
             component_type=ComponentType.Button,
@@ -117,7 +107,7 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
             custom_id=f'{command_id}|{DatePickerButtons.NEXT_5DAYS}|{reference_time}',
             label='+5D',
             style=ButtonStyle.Success,
-            disabled=False if can_move_5days_forward(current_time) else True
+            disabled=False if can_move_5days_forward(reference_time) else True
         ),
         Button(
             component_type=ComponentType.Button,
@@ -130,12 +120,3 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
         component_type=ComponentType.ActionRow,
         components=buttons
     )
-
-
-def check_if_5days_backward_is_allowed(current_time: int, reference_time: int, disable_old: bool) -> bool:
-    if disable_old is True:
-        return current_time > reference_time
-    else:
-        current_day = get_utc_day_from_timestamp(current_time)
-        five_days_check = move_5days_backward(current_time)
-        return current_day != five_days_check

@@ -40,32 +40,37 @@ def check_if_before_pst_midnight(timestamp: int) -> bool:
 
 def move_to_next_month(starting_day: int) -> int:
     ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
-    if ref_date.month == 12:
-        year = ref_date.year + 1
-        jan_first = datetime.fromisocalendar(day=1, year=year, week=1)
-        return int(jan_first.timestamp())
-    else:
-        next_month = ref_date + relativedelta(months=+1)
-        next_month = next_month.replace(day=1)
-        return int(next_month.timestamp())
+    next_month = ref_date + relativedelta(months=+1)
+    next_month = next_month.replace(day=1)
+    return int(next_month.timestamp())
 
 
 def move_back_a_month(starting_day: int) -> int:
     ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
-    if ref_date.month == 12:
-        previous_month = ref_date + relativedelta(months=-1)
-        dec_first = previous_month.replace(day=1)
-        return int(dec_first.timestamp())
-    else:
-        previous_month = ref_date + relativedelta(months=-1)
-        previous_month = previous_month.replace(day=1)
-        return int(previous_month.timestamp())
+    previous_month = ref_date + relativedelta(months=-1)
+    previous_month = previous_month.replace(day=1)
+    return int(previous_month.timestamp())
 
 
 def can_move_5days_forward(starting_day: int) -> bool:
     ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
-    twenty_days_end = ref_date + timedelta(days=19)
+    twenty_days_end = ref_date + timedelta(days=20)
     return ref_date.month == twenty_days_end.month
+
+
+def move_5days_forward(starting_day: int) -> int:
+    ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
+    plus_5_days = ref_date + timedelta(days=5)
+    return int(plus_5_days.timestamp())
+
+
+def check_if_5days_backward_is_prohibited(current_time: int, reference_time: int, disable_old: bool) -> bool:
+    if disable_old is True and current_time > reference_time:
+        return True
+    else:
+        current_start_day = get_utc_day_from_timestamp(reference_time)
+        five_days_check = move_5days_backward(reference_time)
+        return current_start_day == five_days_check
 
 
 def move_5days_backward(starting_day: int) -> int:
