@@ -1,14 +1,10 @@
-from datetime import datetime
-
 from gecore.ps_discord_slash.commands.command_interface import IGlobalInteractionCommand, InteractionCommandType, StartingPerms
 from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
-from gecore.ps_discord_slash.commands.support.date_picker_buttons.date_picker_buttons import create_date_buttons_from
-from gecore.ps_discord_slash.implementations.pretty_time.test_date_processing import process_datepicker_entry
+from gecore.ps_discord_slash.implementations.pretty_time.test_date_processing import process_datepicker_entry, \
+    kickstart_datepicker
 from gecore.ps_discord_slash.models.commands import ApplicationCommand
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
-from gecore.ps_discord_slash.models.flags import DiscordFlags
-from gecore.ps_discord_slash.models.interactions import InteractionResponse, InteractionResponseData, \
-    InteractionResponseType
+from gecore.ps_discord_slash.models.interactions import InteractionResponse
 
 
 class TestDateCommand(InteractionCommandName):
@@ -59,24 +55,9 @@ class TestDateInteractionCommand(IGlobalInteractionCommand):
 
     def execute(self, command_body: {}) -> InteractionResponse:
         print(command_body)
-        action_rows = create_date_buttons_from(
-            command_id=TestDateCommand.TESTDATECOMPONENTS.value,
-            start_date=int(datetime.now().timestamp()),
-            disable_old=True
-        )
-        return InteractionResponse(
-            response_type=InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            response_data=InteractionResponseData(
-                content='Please pick a date',
-                flags=DiscordFlags.NONE,
-                components=action_rows
-            )
-        )
+        return kickstart_datepicker(command_id=TestDateCommand.TESTDATECOMPONENTS.value)
 
     def execute_component(self, command_body: {}) -> InteractionResponse:
-        # todo depending on what we get
-        #  if navigation button-> we change the exiting message
-        #  if specific date button we ask for a confirmation.
         return process_datepicker_entry(
             command_id=TestDateCommand.TESTDATECOMPONENTS.value,
             command_body=command_body

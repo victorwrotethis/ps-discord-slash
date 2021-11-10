@@ -66,7 +66,7 @@ def execute_if_permitted(command_body: {}, interaction_command: InteractionComma
     if command_search_result.has_been_found:
         guild_command = command_search_result.found_command
         permission_check_result = check_if_permitted(command_body, guild_command)
-        print(f'ccommand being approved to run is {permission_check_result.approved}')
+        print(f'command being approved to run is {permission_check_result.approved}')
         if permission_check_result.approved:
             if permission_check_result.has_set_perms:
                 return perform_execution(command_body, interaction_command)

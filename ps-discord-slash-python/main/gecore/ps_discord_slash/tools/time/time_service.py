@@ -45,11 +45,14 @@ def move_to_next_month(starting_day: int) -> int:
     return int(next_month.timestamp())
 
 
-def move_back_a_month(starting_day: int) -> int:
+def move_back_a_month(starting_day: int, disable_old: bool) -> int:
     ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
     previous_month = ref_date + relativedelta(months=-1)
-    previous_month = previous_month.replace(day=1)
-    return int(previous_month.timestamp())
+    previous_month_day = previous_month.replace(day=1)
+    previous_month_timestamp = int(previous_month_day.timestamp())
+    if disable_old is True:
+        return validate_is_before_current_time(previous_month_timestamp)
+    return previous_month_timestamp
 
 
 def can_move_5days_forward(starting_day: int) -> bool:
@@ -64,20 +67,37 @@ def move_5days_forward(starting_day: int) -> int:
     return int(plus_5_days.timestamp())
 
 
+def is_current_day_in_utc(reference_day: int) -> bool:
+    current_utc_day = get_utc_day_from_timestamp(get_current_time())
+    return reference_day == current_utc_day
+
+
+def validate_is_before_current_time(reference_time: int) -> int:
+    current_time = get_current_time()
+    if reference_time < current_time:
+        return get_utc_day_from_timestamp(current_time)
+    else:
+        return reference_time
+
+
 def check_if_5days_backward_is_prohibited(current_time: int, reference_time: int, disable_old: bool) -> bool:
     if disable_old is True and current_time > reference_time:
         return True
     else:
         current_start_day = get_utc_day_from_timestamp(reference_time)
-        five_days_check = move_5days_backward(reference_time)
+        five_days_check = move_5days_backward(reference_time, disable_old)
         return current_start_day == five_days_check
 
 
-def move_5days_backward(starting_day: int) -> int:
+def move_5days_backward(starting_day: int, disable_old: bool) -> int:
     ref_date = datetime.fromtimestamp(starting_day, tz=pytz.utc)
     minus_5_days = ref_date - timedelta(days=5)
     if ref_date.month == minus_5_days.month:
-        return int(minus_5_days.timestamp())
+        minus_5_days_timestamp = int(minus_5_days.timestamp())
+        if disable_old is True:
+            return validate_is_before_current_time(minus_5_days_timestamp)
+        else:
+            return minus_5_days_timestamp
     else:
         return int(ref_date.replace(day=1).timestamp())
 
