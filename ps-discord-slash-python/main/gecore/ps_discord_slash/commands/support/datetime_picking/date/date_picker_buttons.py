@@ -6,7 +6,7 @@ from gecore.ps_discord_slash.tools.time.time_service import get_twenty_days, get
     can_move_5days_forward, check_if_5days_backward_is_prohibited
 
 
-class DatePickerButtons(str, Enum):
+class DatePickerTask(str, Enum):
     PREVIOUS_MONTH = 'previousMonth'
     PREVIOUS_5DAYS = 'previous5Days'
     NEXT_5DAYS = 'next5Days'
@@ -31,7 +31,7 @@ def create_buttons_from_days(command_id: str, up_to_twenty_days: dict) -> []:
     for date in up_to_twenty_days.items():
         button = Button(
             component_type=ComponentType.Button,
-            custom_id=f'{command_id}|{DatePickerButtons.SPECIFIC_DAY}|{date[1]}',
+            custom_id=f'{command_id}|{DatePickerTask.SPECIFIC_DAY}|{date[1]}',
             label=date[0],
             style=ButtonStyle.Primary
         )
@@ -81,14 +81,14 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
     buttons = [
         Button(
             component_type=ComponentType.Button,
-            custom_id=f'{command_id}|{DatePickerButtons.PREVIOUS_MONTH}|{reference_time}',
+            custom_id=f'{command_id}|{DatePickerTask.PREVIOUS_MONTH}|{reference_time}',
             label='-1M',
             style=ButtonStyle.Danger,
             disabled=True if current_time > reference_time and disable_old is True else False
         ),
         Button(
             component_type=ComponentType.Button,
-            custom_id=f'{command_id}|{DatePickerButtons.PREVIOUS_5DAYS}|{reference_time}',
+            custom_id=f'{command_id}|{DatePickerTask.PREVIOUS_5DAYS}|{reference_time}',
             label='-5D',
             style=ButtonStyle.Success,
             disabled=check_if_5days_backward_is_prohibited(current_time, reference_time, disable_old)
@@ -102,14 +102,14 @@ def add_navigation_buttons(command_id: str, reference_time: int, disable_old: bo
         ),
         Button(
             component_type=ComponentType.Button,
-            custom_id=f'{command_id}|{DatePickerButtons.NEXT_5DAYS}|{reference_time}',
+            custom_id=f'{command_id}|{DatePickerTask.NEXT_5DAYS}|{reference_time}',
             label='+5D',
             style=ButtonStyle.Success,
             disabled=False if can_move_5days_forward(reference_time) else True
         ),
         Button(
             component_type=ComponentType.Button,
-            custom_id=f'{command_id}|{DatePickerButtons.NEXT_MONTH}|{reference_time}',
+            custom_id=f'{command_id}|{DatePickerTask.NEXT_MONTH}|{reference_time}',
             label='+1M',
             style=ButtonStyle.Danger
         )

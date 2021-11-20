@@ -2,6 +2,9 @@ from enum import Enum
 
 
 class ComponentType(Enum):
+    """
+        Reflects: https://discord.com/developers/docs/interactions/message-components#component-object-component-types
+    """
     ActionRow = 1
     Button = 2
     SelectMenu = 3
@@ -34,6 +37,7 @@ class ActionRow(Component):
 
 
 class ButtonStyle(Enum):
+    """Reflects: https://discord.com/developers/docs/interactions/message-components#button-object-button-styles"""
     Primary = 1
     Secondary = 2
     Success = 3

@@ -5,7 +5,7 @@ from gecore.ps_discord_slash.commands.command_name_interface import InteractionC
 
 
 class ApplicationCommandOptionType(IntEnum):
-    """"reflects: https://discord.com/developers/docs/interactions/slash-commands#applicationcommandoptiontype"""
+    """"reflects: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type"""
     SUB_COMMAND = 1
     SUB_COMMAND_GROUP = 2
     STRING = 3
@@ -24,8 +24,8 @@ class ApplicationCommandOptionType(IntEnum):
 
 class ApplicationCommandOptionChoice:
     """"
-    Create a new ApplicationCommandOptionChoice. Value can be a string or int
-    reflects: https://discord.com/developers/docs/interactions/slash-commands#applicationcommandoptionchoice
+    Create a new ApplicationCommandOptionChoice. Discord accepts values that are a string, int or double
+    reflects: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-choice-structure
     """
 
     def __init__(self, name: str, value):
@@ -35,9 +35,8 @@ class ApplicationCommandOptionChoice:
 
 class ApplicationCommandOption:
     """
-    Creates new Discord ApplicationCommandOption option. A maximum of 10 choices is allowed.
-    It is recommended making the name camelcase for clarity, even though Discord will lowercase it.
-    reflects: https://discord.com/developers/docs/interactions/slash-commands#application-command-object-application-command-option-structure
+    Creates new Discord ApplicationCommandOption option. A maximum of 25 choices is allowed.
+    reflects: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure
     """
 
     def __init__(self, a_type: ApplicationCommandOptionType, name: str, description: str, **kwargs):
@@ -48,6 +47,9 @@ class ApplicationCommandOption:
         self.required = kwargs.get('required', None)
         self.choices = kwargs.get('choices', [])
         self.options = kwargs.get('options', [])
+        self.min_value = kwargs.get('min_value', None)
+        self.max_value = kwargs.get('max_value', None)
+        self.autocomplete = kwargs.get('autocomplete', None)
 
     def __getstate__(self):
         """"Checks if choices or options are filled in, otherwise omits them for JsonPickle"""
@@ -65,6 +67,12 @@ class ApplicationCommandOption:
             del state['choices']
         if not state['options']:
             del state['options']
+        if not state['min_value']:
+            del state['min_value']
+        if not state['max_value']:
+            del state['max_value']
+        if not state['autocomplete']:
+            del state['autocomplete']
         return state
 
 
@@ -73,8 +81,8 @@ class ApplicationCommandSubmission:
     Creates a new Discord ApplicationCommandSubmission to be sent to the api.
     Can contain nested ApplicationCommandOption.
     reflects:
-        https://discord.com/developers/docs/interactions/slash-commands#create-global-application-command
-        https://discord.com/developers/docs/interactions/slash-commands#create-guild-application-command
+        https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
+        https://discord.com/developers/docs/interactions/application-commands#create-guild-application-command
     """
 
     def __init__(self, name: InteractionCommandName, description: str, options: List[ApplicationCommandOption]):
@@ -87,7 +95,7 @@ class ApplicationCommand:
     """
     Resulting application command response from Discord API upon creating command.
     The name has to be camel case.
-    reflects: https://discord.com/developers/docs/interactions/slash-commands#applicationcommand
+    reflects: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure
     """
 
     def __init__(self, app_id: str, name: InteractionCommandName, description: str, command_id: str = None,

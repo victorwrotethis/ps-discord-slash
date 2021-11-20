@@ -1,5 +1,5 @@
-from gecore.ps_discord_slash.commands.support.date_picker_buttons.date_picker_buttons import DatePickerButtons
-from gecore.ps_discord_slash.commands.support.date_picker_buttons.date_picker_interaction import \
+from gecore.ps_discord_slash.commands.support.datetime_picking.date.date_picker_buttons import DatePickerTask
+from gecore.ps_discord_slash.commands.support.datetime_picking.date.date_picker_interaction import \
     process_datepicker_interaction, process_date_navigation, init_date_picker
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 from gecore.ps_discord_slash.models.interactions import InteractionResponse, InteractionResponseData, \
@@ -14,17 +14,24 @@ def make_pst_friendly_utc_day(reference_time: int):
     else:
         return reference_time
 
-
+# todo do we want to make this more generic and allowing to chose timezones remotely? Do we limit it to a few for now?
+#  some function that calculates
 def kickstart_datepicker(command_id: str) -> InteractionResponse:
     current_time = get_current_time()
     reference_time = make_pst_friendly_utc_day(current_time)
     return init_date_picker(command_id=command_id, timestamp=reference_time)
 
 
-def process_datepicker_entry(command_id: str, command_body: {}) -> InteractionResponse:
+# Todo but we have the PST thing in here, which isn't great/
+#  we're going to move out later so this particular function can move towards support
+def process_datepicker_entry(command_id: str, command_body: {}, picked_date_function) -> InteractionResponse:
+    """
+    Processes incoming picked datepicker-options and uses the provided picked_date_function to handle your
+    custom implementations from that moment.
+    """
     parsed_custom_id, timestamp = process_datepicker_interaction(command_body=command_body, disable_old=True)
-    if parsed_custom_id.task == DatePickerButtons.SPECIFIC_DAY:
-        return process_date_picked(timestamp)
+    if parsed_custom_id.task == DatePickerTask.SPECIFIC_DAY:
+        return picked_date_function(timestamp)
     else:
         if is_current_day_in_utc(timestamp):
             timestamp = make_pst_friendly_utc_day(reference_time=timestamp)

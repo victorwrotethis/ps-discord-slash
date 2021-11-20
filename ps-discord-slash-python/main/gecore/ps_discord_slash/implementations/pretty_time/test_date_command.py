@@ -1,7 +1,7 @@
 from gecore.ps_discord_slash.commands.command_interface import IGlobalInteractionCommand, InteractionCommandType, StartingPerms
 from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 from gecore.ps_discord_slash.implementations.pretty_time.test_date_processing import process_datepicker_entry, \
-    kickstart_datepicker
+    kickstart_datepicker, process_date_picked
 from gecore.ps_discord_slash.models.commands import ApplicationCommand
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.interactions import InteractionResponse
@@ -60,5 +60,6 @@ class TestDateInteractionCommand(IGlobalInteractionCommand):
     def execute_component(self, command_body: {}) -> InteractionResponse:
         return process_datepicker_entry(
             command_id=TestDateCommand.TESTDATECOMPONENTS.value,
-            command_body=command_body
+            command_body=command_body,
+            picked_date_function=process_date_picked
         )

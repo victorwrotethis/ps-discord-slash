@@ -1,10 +1,10 @@
 from datetime import datetime
 import unittest
 
-from gecore.ps_discord_slash.commands.support.date_picker_buttons.date_picker_buttons import \
+from gecore.ps_discord_slash.commands.support.datetime_picking.date.date_picker_buttons import \
     check_if_5days_backward_is_prohibited
 from gecore.ps_discord_slash.tools.time.time_service import get_month_from_timestamp, move_5days_backward, \
-    move_to_next_month, can_move_5days_forward, get_current_time
+    move_to_next_month, get_current_time
 
 
 class TimeServiceTest(unittest.TestCase):
