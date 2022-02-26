@@ -8,6 +8,7 @@ from gecore.ps_discord_slash.commands.command_manager.command_manager_command im
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import create_command_submission
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
 from gecore.ps_discord_slash.implementations.pretty_time.test_date_command import TestDateInteractionCommand
+from gecore.ps_discord_slash.implementations.reservation.start_reservation_command import StartReservationSlashCommand
 
 
 class CommandCreatorTest(unittest.TestCase):
@@ -34,5 +35,9 @@ class CommandCreatorTest(unittest.TestCase):
         print(json.dumps(printable))
 
         result_two = TestDateInteractionCommand.build(621502053373706241)
-        printable = json.loads(jsonpickle.encode(result_two, unpicklable=False))
-        print(json.dumps(printable))
+        printable2 = json.loads(jsonpickle.encode(result_two, unpicklable=False))
+        print(json.dumps(printable2))
+
+        result_three = StartReservationSlashCommand.build(621502053373706241)
+        printable3 = json.loads(jsonpickle.encode(result_three, unpicklable=False))
+        print(json.dumps(printable3))

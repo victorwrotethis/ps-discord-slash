@@ -3,14 +3,16 @@ from typing import List
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 
 
-# https://discord.com/developers/docs/interactions/slash-commands#interaction-object-interaction-request-type
+# https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object-interaction-type
 class InteractionType:
     PING = 1
     APPLICATION_COMMAND = 2
     MESSAGE_COMPONENT = 3
+    APPLICATION_COMMAND_AUTOCOMPLETE = 4
+    MODAL_SUBMIT = 5
 
 
-# https://discord.com/developers/docs/interactions/slash-commands#interaction-response-object-interaction-callback-type
+# https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object-interaction-callback-type
 class InteractionResponseType:
     PONG = 1
     ACKNOWLEDGE = 2  # Deprecated
@@ -19,6 +21,8 @@ class InteractionResponseType:
     DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE = 5
     DEFERRED_UPDATE_MESSAGE = 6
     UPDATE_MESSAGE = 7
+    APPLICATION_COMMAND_AUTOCOMPLETE_RESULT = 8
+    MODAL = 9
 
 
 # https://discord.com/developers/docs/interactions/slash-commands#interaction-applicationcommandinteractiondataoption
