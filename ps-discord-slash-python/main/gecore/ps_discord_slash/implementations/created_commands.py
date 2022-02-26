@@ -8,6 +8,7 @@ class OvOInteractionCommand(InteractionCommandName):
     RESERVATION = 'reservation'
     RESERVE = 'reserve'
     RESERVE_6V6 = '6v6base'
+    START_RESERVATION = 'startreservation'
     TEST_GLOBAL = 'globaltest'
 
     @staticmethod

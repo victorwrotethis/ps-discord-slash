@@ -3,6 +3,7 @@ from gecore.ps_discord_slash.commands.models.available_commands import Available
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
 from gecore.ps_discord_slash.implementations.pretty_time.time_prettifier_command import PrettyTimeInteractionCommand
 from gecore.ps_discord_slash.implementations.pretty_time.test_date_command import TestDateInteractionCommand
+from gecore.ps_discord_slash.implementations.reservation.start_reservation_command import StartReservationSlashCommand
 from gecore.ps_discord_slash.implementations.unplug.unplug_command import UnplugInteractionCommand
 from gecore.ps_discord_slash.processing.interaction_processor import InteractionProcessor, available_commands_attr
 
@@ -17,7 +18,7 @@ def load_commands(command_processor: InteractionProcessor):
         AvailableCommands(
             command_list=[
                 SearchBaseSlashCommand(), UnplugInteractionCommand(),
-                PrettyTimeInteractionCommand(), TestDateInteractionCommand()
+                PrettyTimeInteractionCommand(), TestDateInteractionCommand(), StartReservationSlashCommand()
             ]
         )
     )
