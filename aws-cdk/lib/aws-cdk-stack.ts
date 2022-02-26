@@ -1,13 +1,13 @@
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2';
-import { LambdaProxyIntegration } from '@aws-cdk/aws-apigatewayv2-integrations';
-import { Alias, Runtime, Version } from '@aws-cdk/aws-lambda';
-import { PythonFunction } from '@aws-cdk/aws-lambda-python';
-import * as cdk from '@aws-cdk/core';
-import { RemovalPolicy } from '@aws-cdk/core';
+import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
+import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
+import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
+import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
+import { Alias, Runtime, Version } from 'aws-cdk-lib/aws-lambda';
+import { Construct } from 'constructs';
 import { Config } from './config';
 
-export class AwsCdkStack extends cdk.Stack {
-  constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
+export class AwsCdkStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const discordApi = new HttpApi(this, 'DiscordApi');
@@ -17,14 +17,14 @@ export class AwsCdkStack extends cdk.Stack {
       entry: '../ps-discord-slash-python/main',
       index: 'gecore/ps_discord_slash/app.py',
       handler: 'lambda_handler',
-      runtime: Runtime.PYTHON_3_8,
+      runtime: Runtime.PYTHON_3_9,
       environment:{
         discord_public_api_key: Config.discordPublicApiKey
       }, currentVersionOptions: {removalPolicy: RemovalPolicy.RETAIN}      
     });
     const versionLa = new Version(this, 'VersionIH4', {lambda: interactionsHandler, description: 'adds nothing again', removalPolicy:RemovalPolicy.RETAIN});
     const aliasLa = new Alias(this, 'AliasIH4', {version: versionLa, aliasName: 'V5'})//should be named live/prod/active/blue/green/debug etc
-    const interactions_integration = new LambdaProxyIntegration({handler: interactionsHandler});
+    const interactions_integration = new HttpLambdaIntegration('DiscordIntegration',interactionsHandler);
 
     discordApi.addRoutes({
       path: '/DiscordInteractions',
