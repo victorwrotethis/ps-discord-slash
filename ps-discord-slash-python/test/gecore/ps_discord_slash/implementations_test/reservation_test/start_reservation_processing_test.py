@@ -1,6 +1,7 @@
 import unittest
 
-from gecore.ps_discord_slash.implementations.reservation.start_reservation_processing import retrieve_ids_if_rep
+from gecore.ps_discord_slash.implementations.reservation.start_reservation_processing import retrieve_ids_if_rep, \
+    retrieve_group_name, retrieve_required_info
 
 
 class StartReservationProcessTest(unittest.TestCase):
@@ -9,6 +10,18 @@ class StartReservationProcessTest(unittest.TestCase):
         example_event = basic_example()
         result = retrieve_ids_if_rep(example_event)
         self.assertEqual(482534612, result[0])
+
+    def test_retrieve_group_name(self):
+        example_event = basic_example()
+        result = retrieve_group_name(example_event)
+        self.assertEqual('HELP', result)
+
+    def test_retrieve_required_info(self):
+        example_event = basic_example()
+        result = retrieve_required_info(example_event)
+        self.assertEqual('HELP', result.group_name)
+        self.assertEqual(482534611, result.requester_id)
+        self.assertEqual([482534612], result.approved_ids)
 
 
 def basic_example():
