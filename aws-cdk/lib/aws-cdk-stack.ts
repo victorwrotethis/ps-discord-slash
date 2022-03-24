@@ -19,7 +19,8 @@ export class AwsCdkStack extends Stack {
       handler: 'lambda_handler',
       runtime: Runtime.PYTHON_3_9,
       environment:{
-        discord_public_api_key: Config.discordPublicApiKey
+        discord_public_api_key: Config.discordPublicApiKey,
+        ovo_web_url: Config.ovoWebUrl
       }, currentVersionOptions: {removalPolicy: RemovalPolicy.RETAIN}      
     });
     const versionLa = new Version(this, 'VersionIH4', {lambda: interactionsHandler, description: 'adds nothing again', removalPolicy:RemovalPolicy.RETAIN});
