@@ -20,7 +20,8 @@ export class AwsCdkStack extends Stack {
       runtime: Runtime.PYTHON_3_9,
       environment:{
         discord_public_api_key: Config.discordPublicApiKey,
-        ovo_web_url: Config.ovoWebUrl
+        ovo_web_url: Config.ovoWebUrl,
+        token_api_url: Config.tokenApiUrl
       }, currentVersionOptions: {removalPolicy: RemovalPolicy.RETAIN}      
     });
     const versionLa = new Version(this, 'VersionIH4', {lambda: interactionsHandler, description: 'adds nothing again', removalPolicy:RemovalPolicy.RETAIN});

@@ -11,5 +11,6 @@ export class Config {
 
     static get discordPublicApiKey() { return this.getConfig<string>('discordPublicApiKey') };
     static get ovoWebUrl() { return this.getConfig<string>('ovoWebUrl') };
+    static get tokenApiUrl() { return this.getConfig<string>('tokenApiUrl') };
 
 }

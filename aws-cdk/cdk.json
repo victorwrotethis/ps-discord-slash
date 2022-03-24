@@ -2,6 +2,7 @@
   "app": "npx ts-node --prefer-ts-exts bin/aws-cdk.ts",
   "context": {
     "discordPublicApiKey": "Public Key can be found at your applications page",
-    "ovoWebUrl": "https://ovo-web.pages.dev/"
+    "ovoWebUrl": "https://ovo-web.pages.dev",
+    "tokenApiUrl": "https://api.ps2.events/ovotokens"
   }
 }
