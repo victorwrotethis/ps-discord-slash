@@ -30,7 +30,7 @@ def not_configured_response() -> InteractionResponseData:
 
 def not_properly_executed_response() -> InteractionResponseData:
     return InteractionResponseData(
-        content='This command dit not properly execute',
+        content='This command did not properly execute',
         flags=DiscordFlags.HIDDEN)
 
 

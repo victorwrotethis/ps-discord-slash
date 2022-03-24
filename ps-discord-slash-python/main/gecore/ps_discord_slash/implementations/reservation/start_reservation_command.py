@@ -1,7 +1,9 @@
 from gecore.ps_discord_slash.commands.command_interface import InteractionCommand, InteractionCommandType, StartingPerms
 from gecore.ps_discord_slash.implementations.created_commands import OvOInteractionCommand
+from gecore.ps_discord_slash.implementations.reservation.start_reservation_processing import process_reservation_start
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
+from gecore.ps_discord_slash.models.default_interaction_responses import not_properly_executed_response
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 from gecore.ps_discord_slash.models.interactions import InteractionResponse, InteractionResponseData, \
@@ -46,11 +48,13 @@ class StartReservationSlashCommand(InteractionCommand):
         )
 
     def execute(self, command_body: {}) -> InteractionResponse:
-
         print(command_body)
-        data = InteractionResponseData(
-            content=f'Not yet',
-            flags=DiscordFlags.HIDDEN
-        )
+        generated_link, acceptable = process_reservation_start(command_body)
+        if acceptable:
+            data = InteractionResponseData(
+                content=f'Alright, lets start [here]({generated_link})!',
+                flags=DiscordFlags.HIDDEN
+            )
+        else:
+            data = not_properly_executed_response()
         return InteractionResponse(InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE, data)
-
