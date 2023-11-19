@@ -27,7 +27,7 @@ def generate_link(token_info: TokenRequestInfo) -> (str, bool):
         token_result = r.json()
         print(token_result)
         redeem_code = token_result['redeem_code']
-        return f'{retrieve_ovo_url()}?code={redeem_code}', True
+        return f'{retrieve_ovo_url()}/reserve?code={redeem_code}', True
     return None, False
 
 

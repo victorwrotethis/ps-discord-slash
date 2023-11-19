@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "ps-discord-slash-python"
+version = "0.1.0"
+description = ""
+authors = ["Victor <vdcommits@outlook.com>"]
+readme = "README.md"
+packages = [{include = "ps_discord_slash_python"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -7,6 +7,8 @@ from gecore.ps_discord_slash.app import lambda_handler
 from gecore.ps_discord_slash.commands.command_manager.command_manager_command import \
     CommandManagerInteractionCommand
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import create_command_submission
+from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
+from gecore.ps_discord_slash.models.discord_config import GenericConfig
 
 
 class AppTest(unittest.TestCase):
@@ -17,8 +19,10 @@ class AppTest(unittest.TestCase):
         print(result)
 
     def test_command(self):
-        command = CommandManagerInteractionCommand.build(1)
+        # command = CommandManagerInteractionCommand.build(1)
+        command = SearchBaseSlashCommand().build(GenericConfig.JAEGER_EVENTS_GUILD)
         submission = create_command_submission(command)
+
         result = json.loads(jsonpickle.encode(submission, unpicklable=False))
         print(json.dumps(result))
 
