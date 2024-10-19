@@ -2,13 +2,14 @@ from gecore.ps_discord_slash.commands.command_interface import IGlobalInteractio
 from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 from gecore.ps_discord_slash.implementations.pretty_time.test_date_processing import process_datepicker_entry, \
     kickstart_datepicker, process_date_picked
-from gecore.ps_discord_slash.models.commands import ApplicationCommand
+from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
+    ApplicationCommandOptionType
 from gecore.ps_discord_slash.models.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.interactions import InteractionResponse
 
 
 class RollCallCommand(InteractionCommandName):
-    ROLL_CALL = 'testdate'
+    ROLL_CALL = 'roll_call'
     COMPONENTS = 't_d'
 
 
@@ -18,7 +19,7 @@ def find_abbreviated_manage_command(incoming_name: str) -> RollCallCommand:
             return enum
 
 
-class TestDateInteractionCommand(IGlobalInteractionCommand):
+class RollCallInteractionCommand(IGlobalInteractionCommand):
 
     @staticmethod
     def allow_dm_usage() -> bool:
@@ -49,8 +50,22 @@ class TestDateInteractionCommand(IGlobalInteractionCommand):
         return ApplicationCommand(
             app_id=str(GenericConfig.APP_ID),
             name=RollCallCommand.ROLL_CALL,
-            description='Give me the dates',
-            guild_id=guild_id
+            description='Give me the starting time',
+            guild_id=guild_id,
+            options=[
+                ApplicationCommandOption(
+                    a_type=ApplicationCommandOptionType.NUMBER,
+                    name='hour',
+                    description='Starting hour in UTC',
+                    required=True
+                ),
+                ApplicationCommandOption(
+                    a_type=ApplicationCommandOptionType.NUMBER,
+                    name='minutes',
+                    description='Starting minutes, use 0 if none',
+                    required=True
+                )
+            ]
         )
 
     def execute(self, command_body: {}) -> InteractionResponse:
@@ -63,3 +78,6 @@ class TestDateInteractionCommand(IGlobalInteractionCommand):
             command_body=command_body,
             picked_date_function=process_date_picked
         )
+
+# Create row of 5 buttons with 4 hours + 1 absence
+# Then on reply update the message to include a person at a time?
