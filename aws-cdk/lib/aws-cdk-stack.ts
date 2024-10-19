@@ -1,10 +1,10 @@
-import { HttpApi, HttpMethod } from '@aws-cdk/aws-apigatewayv2-alpha';
-import { HttpLambdaIntegration } from '@aws-cdk/aws-apigatewayv2-integrations-alpha';
 import { PythonFunction } from '@aws-cdk/aws-lambda-python-alpha';
 import { RemovalPolicy, Stack, StackProps } from 'aws-cdk-lib';
 import { Alias, Runtime, Version } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 import { Config } from './config';
+import { HttpLambdaIntegration } from 'aws-cdk-lib/aws-apigatewayv2-integrations';
+import { HttpApi, HttpMethod } from 'aws-cdk-lib/aws-apigatewayv2';
 
 export class AwsCdkStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
