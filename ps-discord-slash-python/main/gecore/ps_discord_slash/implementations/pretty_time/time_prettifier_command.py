@@ -3,7 +3,7 @@ from gecore.ps_discord_slash.commands.command_name_interface import InteractionC
 from gecore.ps_discord_slash.implementations.pretty_time.time_request import create_time_request, PrettyTimeArgument
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 from gecore.ps_discord_slash.models.interactions import InteractionResponse, InteractionResponseData, \
     InteractionResponseType

@@ -8,7 +8,7 @@ from gecore.ps_discord_slash.commands.command_manager.command_manager_command im
     CommandManagerInteractionCommand
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import create_command_submission
 from gecore.ps_discord_slash.implementations.bases.search_base_command import SearchBaseSlashCommand
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 
 
 class AppTest(unittest.TestCase):

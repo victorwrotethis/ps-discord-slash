@@ -8,7 +8,7 @@ from gecore.ps_discord_slash.implementations.created_commands import OvOInteract
 # from gecore.ps_discord_slash.implementations.bases.search_bases import find_bases
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 from gecore.ps_discord_slash.models.interactions import InteractionResponse, InteractionResponseData, \
     InteractionResponseType

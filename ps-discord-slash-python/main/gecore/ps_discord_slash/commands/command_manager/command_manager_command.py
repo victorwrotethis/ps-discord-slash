@@ -6,7 +6,7 @@ from gecore.ps_discord_slash.commands.command_name_interface import InteractionC
 from gecore.ps_discord_slash.commands.models.available_commands import AvailableCommands
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.interactions import InteractionResponse
 
 

@@ -3,7 +3,7 @@ from gecore.ps_discord_slash.commands.command_name_interface import InteractionC
 from gecore.ps_discord_slash.implementations.pretty_time.test_date_processing import process_datepicker_entry, \
     kickstart_datepicker, process_date_picked
 from gecore.ps_discord_slash.models.commands import ApplicationCommand
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.interactions import InteractionResponse
 
 

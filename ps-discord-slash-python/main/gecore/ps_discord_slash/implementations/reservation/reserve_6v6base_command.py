@@ -5,7 +5,7 @@ from gecore.ps_discord_slash.tools.time.pick_time import provide_months
 from gecore.ps_discord_slash.tools.time.time_variants import TimeZoneVariant, TimeVariant
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 
 
 class Reserve6v6BaseSlashCommand(InteractionCommand):

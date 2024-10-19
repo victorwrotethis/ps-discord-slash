@@ -5,7 +5,7 @@ import jsonpickle
 import requests
 
 from gecore.ps_discord_slash.implementations.reservation.models.token_request_info import TokenRequestInfo
-from gecore.ps_discord_slash.models.discord_config import JaegerEventRoles
+from gecore.ps_discord_slash.implementations.discord_config import JaegerEventRoles
 
 token_api = os.getenv('token_api_url')
 

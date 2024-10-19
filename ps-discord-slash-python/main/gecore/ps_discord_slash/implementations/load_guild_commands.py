@@ -4,7 +4,7 @@ from gecore.ps_discord_slash.commands.models.local_commands import GuildSlashCom
 from gecore.ps_discord_slash.commands.models.local_permissions import CommandPermissions
 from gecore.ps_discord_slash.implementations.bob_commands.roll_call_command import RollCallInteractionCommand
 from gecore.ps_discord_slash.implementations.pretty_time.test_date_command import TestDateInteractionCommand
-from gecore.ps_discord_slash.models.discord_config import GenericConfig, NoFunChannel, NoFunRoles
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig, NoFunChannel, NoFunRoles
 
 # Should also be loaded in load_available_commands to show up
 

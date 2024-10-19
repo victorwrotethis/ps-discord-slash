@@ -4,7 +4,7 @@ from gecore.ps_discord_slash.implementations.reservation.start_reservation_proce
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
 from gecore.ps_discord_slash.models.default_interaction_responses import not_properly_executed_response
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 from gecore.ps_discord_slash.models.interactions import InteractionResponse, InteractionResponseData, \
     InteractionResponseType

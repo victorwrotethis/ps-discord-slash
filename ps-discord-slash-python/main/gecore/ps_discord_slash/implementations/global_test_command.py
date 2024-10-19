@@ -3,7 +3,7 @@ from gecore.ps_discord_slash.implementations.bases.models.base_response import c
 from gecore.ps_discord_slash.implementations.created_commands import OvOInteractionCommand
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 from gecore.ps_discord_slash.models.interactions import InteractionResponse, Embed, InteractionResponseData, \
     InteractionResponseType

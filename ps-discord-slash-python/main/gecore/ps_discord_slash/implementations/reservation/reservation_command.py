@@ -2,7 +2,7 @@ from gecore.ps_discord_slash.commands.command_interface import InteractionComman
 from gecore.ps_discord_slash.implementations.created_commands import OvOInteractionCommand
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
-from gecore.ps_discord_slash.models.discord_config import GenericConfig
+from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 
 
 class ReservationSlashCommand(InteractionCommand):
