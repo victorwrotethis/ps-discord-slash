@@ -8,6 +8,11 @@ class ComponentType(Enum):
     ActionRow = 1
     Button = 2
     SelectMenu = 3
+    TextInput = 4
+    UserSelect = 5
+    RoleSelect = 6
+    MentionableSelect = 7
+    ChannelSelect = 8
 
     def __getstate__(self):
         """Allows JsonPickle just to retrieve the value"""
@@ -43,6 +48,7 @@ class ButtonStyle(Enum):
     Success = 3
     Danger = 4
     Link = 5
+    Premium = 6
 
     def __getstate__(self):
         """Allows JsonPickle just to retrieve the value"""

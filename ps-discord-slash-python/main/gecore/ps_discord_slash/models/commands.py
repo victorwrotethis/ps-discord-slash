@@ -2,9 +2,15 @@ from enum import IntEnum
 
 from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 
+class ApplicationCommandType(IntEnum):
+    """"reflects: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types"""
+    CHAT_INPUT = 1
+    USER = 2
+    MESSAGE = 3
+    PRIMARY_ENTRY_POINT = 4
 
 class ApplicationCommandOptionType(IntEnum):
-    """"reflects: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type"""
+    """reflects: https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-type"""
     SUB_COMMAND = 1
     SUB_COMMAND_GROUP = 2
     STRING = 3
@@ -99,13 +105,14 @@ class ApplicationCommand:
     """
 
     def __init__(self, app_id: str, name: InteractionCommandName, description: str, command_id: str = None,
-                 version: int = None, guild_id: int = None, options: list[ApplicationCommandOption] = None):
+                 version: int = None, guild_id: int = None, command_type: ApplicationCommandType = 1 , options: list[ApplicationCommandOption] = None):
         self.id = command_id
         self.application_id = app_id
         self.name = name
         self.description = description
         self.version = version
         self.guild_id = guild_id
+        self.type = command_type
         self.options = options
 
     def __getstate__(self):
