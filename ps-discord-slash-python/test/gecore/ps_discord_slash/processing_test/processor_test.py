@@ -1,17 +1,13 @@
 import json
-import os
 import unittest
 
 from gecore.ps_discord_slash.implementations.created_commands import OvOInteractionCommand
 from gecore.ps_discord_slash.implementations.load_available_commands import check_if_commands_loaded
 from gecore.ps_discord_slash.processing.interaction_processor import InteractionProcessor
 
-os.environ['MAP_REGION_LOCATION'] = '../../../resources/map_region.json'
-
 
 class CommandProcessorTest(unittest.TestCase):
     def test_find_command_from_list(self):
-        os.environ['MAP_REGION_LOCATION'] = '../../../resources/map_region.json'
         search_base_id = 'searchbaseid'
         command_processor = InteractionProcessor()
         check_if_commands_loaded(command_processor)

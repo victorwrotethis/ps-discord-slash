@@ -1,7 +1,7 @@
 import unittest
 
-from gecore.ps_discord_slash.commands.command_manager.manage_commands import ManageCommandAbbreviations, ManageCommands, \
-    find_abbreviated_manage_command, find_abbreviated_manage_command_variant
+from gecore.ps_discord_slash.commands.command_manager.manage_commands import ManageCommands, \
+    find_abbreviated_manage_command_variant
 
 
 class ManageCommandsTest(unittest.TestCase):

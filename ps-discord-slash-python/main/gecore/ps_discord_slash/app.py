@@ -10,7 +10,7 @@ from gecore.ps_discord_slash.verification import verifier
 interaction_processor = InteractionProcessor()
 
 
-def lambda_handler(event, context):
+def lambda_handler(event, _context):
     headers = event['headers']
     raw_body = event['body']
     print(raw_body)

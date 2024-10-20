@@ -1,7 +1,7 @@
 import json
 import jsonpickle
 
-from gecore.ps_discord_slash.implementations.bases.models.error_message import ErrorMessage
+from gecore.ps_discord_slash.models.error_message import ErrorMessage
 from gecore.ps_discord_slash.models.interactions import InteractionResponseType
 
 

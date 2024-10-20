@@ -1,13 +1,11 @@
 from enum import IntEnum
-import os
 
 
 class GenericConfig:
-    APP_ID = 789525379047358464  # os.environ.get('application_id')
+    # APP_ID = 789525379047358464  # os.environ.get('application_id')
     JAEGER_EVENTS_GUILD = 207168033918025729  # os.environ.get('jaeger_events_guild')
     TEST_GUILD = 621502053373706241
     NO_FUN = 282944414127489032
-    DB_URL = 'http://localhost:8000'  # os.environ.get('db_url')
 
     def __getstate__(self):
         """Allows JsonPickle just to retrieve the value"""

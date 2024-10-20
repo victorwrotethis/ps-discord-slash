@@ -4,9 +4,9 @@ from gecore.ps_discord_slash.commands.command_manager.command_manager_processor 
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import ManageCommands, ManageCommandAbbreviations
 from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 from gecore.ps_discord_slash.commands.models.available_commands import AvailableCommands
+from gecore.ps_discord_slash.configuration.config_constants import ConfigConstants
 from gecore.ps_discord_slash.models.commands import ApplicationCommand, ApplicationCommandOption, \
     ApplicationCommandOptionType
-from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.interactions import InteractionResponse
 
 
@@ -17,7 +17,7 @@ class CommandManagerInteractionCommand(IGlobalInteractionCommand):
 
     @staticmethod
     def allow_dm_usage() -> bool:
-        """"Already False by default, but to put emphasis this command is meant for usage in guilds only"""
+        """Already False by default, but to put emphasis this command is meant for usage in guilds only"""
         return False
 
     @staticmethod
@@ -43,7 +43,7 @@ class CommandManagerInteractionCommand(IGlobalInteractionCommand):
     @staticmethod
     def build(guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
-            app_id=str(GenericConfig.APP_ID),
+            app_id=str(ConfigConstants.discord_app_id),
             name=ManageCommands.COMMAND_MANAGER,
             description='Manage a particular command',
             options=[

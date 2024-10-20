@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import datetime
 import pytz
 
 from gecore.ps_discord_slash.tools.time.time_variants import TimeZoneVariant, TimeVariant, MonthVariant

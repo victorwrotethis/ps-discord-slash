@@ -1,9 +1,9 @@
 from gecore.ps_discord_slash.commands.command_interface import IGlobalInteractionCommand, InteractionCommandType, StartingPerms
 from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
+from gecore.ps_discord_slash.configuration.config_constants import ConfigConstants
 from gecore.ps_discord_slash.implementations.pretty_time.test_date_processing import process_datepicker_entry, \
     kickstart_datepicker, process_date_picked
 from gecore.ps_discord_slash.models.commands import ApplicationCommand
-from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 from gecore.ps_discord_slash.models.interactions import InteractionResponse
 
 
@@ -47,7 +47,7 @@ class TestDateInteractionCommand(IGlobalInteractionCommand):
     @staticmethod
     def build(guild_id: int = None) -> ApplicationCommand:
         return ApplicationCommand(
-            app_id=str(GenericConfig.APP_ID),
+            app_id=str(ConfigConstants.discord_app_id),
             name=TestDateCommand.TESTDATE,
             description='Give me the dates',
             guild_id=guild_id
