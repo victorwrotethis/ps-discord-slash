@@ -1,5 +1,3 @@
-from typing import List
-
 from gecore.ps_discord_slash.commands.command_interface import InteractionCommand
 from gecore.ps_discord_slash.commands.models.local_commands import GuildSlashCommands, SlashCommand
 from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage

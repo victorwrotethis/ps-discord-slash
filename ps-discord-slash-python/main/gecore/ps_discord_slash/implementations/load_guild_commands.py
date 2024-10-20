@@ -1,5 +1,3 @@
-from typing import List
-
 from gecore.ps_discord_slash.commands.models.local_commands import GuildSlashCommands, SlashCommand
 from gecore.ps_discord_slash.commands.models.local_permissions import CommandPermissions
 from gecore.ps_discord_slash.implementations.bob_commands.roll_call_command import RollCallInteractionCommand
@@ -9,7 +7,7 @@ from gecore.ps_discord_slash.implementations.discord_config import GenericConfig
 # Should also be loaded in load_available_commands to show up
 
 
-def load_guild_commands() -> List[GuildSlashCommands]:
+def load_guild_commands() -> list[GuildSlashCommands]:
     """Loads in slash commands, currently in a manual fashion as there is just one guild served"""
     no_fun_permissions = CommandPermissions(
         guild=GenericConfig.NO_FUN,

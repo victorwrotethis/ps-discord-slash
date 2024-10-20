@@ -1,9 +1,6 @@
-from typing import List
-
 from gecore.ps_discord_slash.commands.models.local_commands import SlashCommand
 from gecore.ps_discord_slash.commands.models.local_permissions import CommandPermissionResult
 from gecore.ps_discord_slash.models.default_interaction_responses import forbidden_response, default_command_channel
-from gecore.ps_discord_slash.models.interactions import InteractionResponse, InteractionResponseType
 
 
 def check_if_permitted(command_body: {}, slash_command: SlashCommand) -> CommandPermissionResult:
@@ -34,7 +31,7 @@ def check_if_permitted(command_body: {}, slash_command: SlashCommand) -> Command
     return CommandPermissionResult(approved=True, has_set_perms=has_set_perms)
 
 
-def check_if_allowed_role(role_list: List[str], guild_command: SlashCommand) -> bool:
+def check_if_allowed_role(role_list: list[str], guild_command: SlashCommand) -> bool:
     for role_id in role_list:
         if int(role_id) in guild_command.perms.allowed_roles:
             return True

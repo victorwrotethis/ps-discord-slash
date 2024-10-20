@@ -1,5 +1,4 @@
 from enum import IntEnum
-from typing import List
 
 from gecore.ps_discord_slash.commands.command_name_interface import InteractionCommandName
 
@@ -86,7 +85,7 @@ class ApplicationCommandSubmission:
         https://discord.com/developers/docs/interactions/application-commands#create-guild-application-command
     """
 
-    def __init__(self, name: InteractionCommandName, description: str, options: List[ApplicationCommandOption]):
+    def __init__(self, name: InteractionCommandName, description: str, options: list[ApplicationCommandOption]):
         self.name = name
         self.description = description
         self.options = options
@@ -100,7 +99,7 @@ class ApplicationCommand:
     """
 
     def __init__(self, app_id: str, name: InteractionCommandName, description: str, command_id: str = None,
-                 version: int = None, guild_id: int = None, options: List[ApplicationCommandOption] = None):
+                 version: int = None, guild_id: int = None, options: list[ApplicationCommandOption] = None):
         self.id = command_id
         self.application_id = app_id
         self.name = name

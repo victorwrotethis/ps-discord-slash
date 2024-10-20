@@ -1,5 +1,3 @@
-from typing import List
-
 from gecore.ps_discord_slash.commands.command_interface import InteractionCommand
 from gecore.ps_discord_slash.commands.models.local_permissions import CommandPermissions
 from gecore.ps_discord_slash.exception.exceptions import CommandException, CommandExceptionMessage
@@ -17,7 +15,7 @@ class SlashCommand:
 
 
 class SlashCommands:
-    def __init__(self, commands: List[SlashCommand], missing_response=CommandExceptionMessage.CommandNotFound):
+    def __init__(self, commands: list[SlashCommand], missing_response=CommandExceptionMessage.CommandNotFound):
         self.commands = commands
         self.missing_response = missing_response
 
@@ -33,7 +31,7 @@ class GuildSlashCommands(SlashCommands):
     Includes Guild id and provides a different message when the guild has no configuration for the command.
     Creates a new list if no command list is supplied.
     """
-    def __init__(self, guild_id: int, commands: List[SlashCommand]):
+    def __init__(self, guild_id: int, commands: list[SlashCommand]):
         super().__init__(commands, CommandExceptionMessage.GuildCommandNotFound)
         self.guild_id = guild_id
 

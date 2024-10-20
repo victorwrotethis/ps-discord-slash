@@ -1,5 +1,3 @@
-from typing import List
-
 from gecore.ps_discord_slash.models.flags import DiscordFlags
 
 
@@ -38,7 +36,7 @@ class ApplicationCommandInteractionData:
     def __init__(self, a_id, name: str, **kwargs):
         self.id = a_id,
         self.name = name
-        self.options = kwargs.get('options', List[ApplicationCommandInteractionDataOption])
+        self.options = kwargs.get('options', list[ApplicationCommandInteractionDataOption])
 
 
 # https://discord.com/developers/docs/interactions/slash-commands#interaction
