@@ -86,7 +86,7 @@ def check_if_5days_backward_is_prohibited(current_time: int, reference_time: int
     else:
         current_start_day = get_utc_day_from_timestamp(reference_time)
         five_days_check = move_5days_backward(reference_time, disable_old)
-        return current_start_day == five_days_check
+        return current_start_day != five_days_check
 
 
 def move_5days_backward(starting_day: int, disable_old: bool) -> int:

@@ -18,7 +18,7 @@ class TimeServiceTest(unittest.TestCase):
     def test_move_5days_backward_returnfirst(self):
         october = 10
         oct_6_utc = 1633478400
-        result = move_5days_backward(oct_6_utc)
+        result = move_5days_backward(oct_6_utc, False)
         month = get_month_from_timestamp(result)
         oct_first = datetime.fromtimestamp(oct_6_utc).replace(day=1)
         self.assertEqual(october, month.value[1])
@@ -27,7 +27,7 @@ class TimeServiceTest(unittest.TestCase):
     def test_move_5days_backward_returnfirstondiff(self):
         october = 10
         oct_4_utc = 1633305600
-        result = move_5days_backward(oct_4_utc)
+        result = move_5days_backward(oct_4_utc, True)
         month = get_month_from_timestamp(result)
         oct_first = datetime.fromtimestamp(oct_4_utc).replace(day=1)
         self.assertEqual(october, month.value[1])
@@ -36,7 +36,7 @@ class TimeServiceTest(unittest.TestCase):
     def test_move_5days_backward_return(self):
         october = 10
         oct_4_utc = 1633305600
-        result = move_5days_backward(oct_4_utc)
+        result = move_5days_backward(oct_4_utc, False)
         month = get_month_from_timestamp(result)
         oct_first = datetime.fromtimestamp(oct_4_utc).replace(day=1)
         self.assertEqual(october, month.value[1])
@@ -52,16 +52,16 @@ class TimeServiceTest(unittest.TestCase):
         oct_2_utc = 1633132800
         current_time = get_current_time()
         result = check_if_5days_backward_is_prohibited(current_time, oct_2_utc, False)
-        self.assertFalse(result)
+        self.assertTrue(result)
 
     def test_check_if_5days_backward_is_allowed_same_day_trud(self):
-        oct_2_utc = 1638316800
+        dec_6_utc = 1638816800
         current_time = get_current_time()
-        result = check_if_5days_backward_is_prohibited(current_time, oct_2_utc, False)
+        result = check_if_5days_backward_is_prohibited(current_time, dec_6_utc, False)
         self.assertTrue(result)
 
 
     def test_move_to_next_month(self):
         oct30 = 1640909648
         result = move_to_next_month(oct30)
-        print(result)
+        self.assertEqual(1640996048, result)
