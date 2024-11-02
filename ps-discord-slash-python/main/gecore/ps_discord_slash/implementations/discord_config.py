@@ -6,6 +6,7 @@ class GenericConfig:
     JAEGER_EVENTS_GUILD = 207168033918025729  # os.environ.get('jaeger_events_guild')
     TEST_GUILD = 621502053373706241
     NO_FUN = 282944414127489032
+    DEVISPORA = 654080771589537792
 
     def __getstate__(self):
         """Allows JsonPickle just to retrieve the value"""

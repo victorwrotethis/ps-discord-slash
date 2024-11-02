@@ -6,6 +6,8 @@ import jsonpickle
 from gecore.ps_discord_slash.app import lambda_handler
 from gecore.ps_discord_slash.commands.command_manager.command_manager_command import CommandManagerInteractionCommand
 from gecore.ps_discord_slash.commands.command_manager.manage_commands import create_command_submission
+from gecore.ps_discord_slash.implementations.pretty_time.test_date_command import TestDateCommand, \
+    TestDateInteractionCommand
 
 
 class AppTest(unittest.TestCase):
@@ -15,8 +17,16 @@ class AppTest(unittest.TestCase):
         result = lambda_handler(event, None)
         print(result)
 
+    # def test_command(self):
+    #     command = CommandManagerInteractionCommand.build(1)
+    #     submission = create_command_submission(command)
+    #
+    #     result = json.loads(jsonpickle.encode(submission, unpicklable=False))
+    #     print(json.dumps(result))
+
+
     def test_command(self):
-        command = CommandManagerInteractionCommand.build(1)
+        command = TestDateInteractionCommand.build(654080771589537792)
         submission = create_command_submission(command)
 
         result = json.loads(jsonpickle.encode(submission, unpicklable=False))

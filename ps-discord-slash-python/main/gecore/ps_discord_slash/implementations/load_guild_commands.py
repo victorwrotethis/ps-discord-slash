@@ -21,12 +21,20 @@ def load_guild_commands() -> list[GuildSlashCommands]:
         guild=GenericConfig.TEST_GUILD
     )
 
+    devispora_guild_perms = CommandPermissions(
+        guild=GenericConfig.DEVISPORA
+    )
+
     test_date = TestDateInteractionCommand.build(test_guild_perms.guild)
     td_guild_command = SlashCommand(test_date, test_guild_perms)
+
+    test_date2 = TestDateInteractionCommand.build(devispora_guild_perms.guild)
+    td_guild_command2 = SlashCommand(test_date, devispora_guild_perms)
 
     testing_roll_call = RollCallInteractionCommand.build(test_guild_perms.guild)
     trc_guild_command = SlashCommand(testing_roll_call, test_guild_perms)
 
     return [
-        GuildSlashCommands(test_date.guild_id, [td_guild_command, trc_guild_command])
+        GuildSlashCommands(test_date.guild_id, [td_guild_command, trc_guild_command]),
+        GuildSlashCommands(test_date2.guild_id, [td_guild_command2]),
     ]

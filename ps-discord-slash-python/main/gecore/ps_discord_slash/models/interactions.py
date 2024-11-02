@@ -65,7 +65,7 @@ class InteractionResponseData:
         self.content = content
         self.flags = flags
         self.embeds = embeds
-        self.allowed_mentions = []
+        self.allowed_mentions = {}
         self.components = components
 
     def __getstate__(self):
